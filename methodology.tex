@@ -1,5 +1,5 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Test Cases}
+\section{Methodology}
 \label{sec:test-cases}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -7,7 +7,7 @@
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Case 1: Resonance with Slowing Down Source}
+\subsection{Test Case 1: Resonance with Slowing Down Source}
 \label{subsec:test-case1}
 
 -cite nate's thesis~\cite{gibson2016thesis}
@@ -33,7 +33,7 @@
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Case 2: A Critical PWR Fuel Pin}
+\subsection{Test Case 2: A Critical PWR Fuel Pin}
 \label{subsec:test-case2}
 
 -cite my thesis~\cite{boyd2016thesis}
@@ -97,6 +97,10 @@ first paragraph: OpenMC
 -continuous energy Monte Carlo neutron transport code
 -\texttt{openmc.mgxs} to generate MGXS in 1 -- 70 energy groups
 -generate reference eigenvalue, and scalar fluxes in each energy group structure
+-mention that iso-in-lab scattering can be used in OpenMC
+  -permits the elimination of the need for an anisotropic scattering kernel in downstream multi-group transport code, or a transport correction, to capture effects from anisotropic scattering
+  -also permits quantification of anisotropic scattering effects
+  -will be used in later sections
 
 second paragraph: OpenMOC
 -cite~\cite{boyd2014openmoc}

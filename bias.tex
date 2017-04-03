@@ -1,8 +1,34 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Biased Eigenvalues in Heterogeneous Geometries}
+\section{Bias Between Continuous Energy and Multi-Group Calculations}
 \label{sec:bias}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+first paragraph:
+-this will come from chapter 5 of my thesis
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Eigenvalue Bias}
+\label{sec:bias-eigenvalues}
+
+first paragraph: what are we comparing??
+-reference eigenvalues from MC simulations
+-reference MC simulation used to collapse MGXS
+-multi-group MOC use MGXS to calculate an eigenvalue
+-MG eigenvalue is compared to MC eigenvalue with Eqn.~\ref{eqn:delta-rho}
+
+second paragraph: presented tabulated results
+-Tab.~\ref{tab:keff-reference} - reference eigenvalues from OpenMC
+  -difference between aniso and iso-in-lab: 65 pcm
+-Tab.~\ref{tab:keff-bias-aniso} - OpenMC eigenvalues w/ MGXS generated from anisotropic OpenMC simulations
+-Tab.~\ref{tab:keff-bias-iso-in-lab} - OpenMOC eigenvalues w/ MGXS generated from iso-in-lab OpenMC simulations
+
+third paragraph: analyze results
+-bias grows more negative with more energy groups
+  -goes against intuition: eigenvalues should be more accurate w/ more groups
+  -with enough groups (e.g., ultra-fine), MG and MC eigenvalues should match exactly
+  -but with coarser group structures, the eigenvalues do not match
+    -even with ``perfect'' group condensation with the ``true'' flux
 
 \begin{equation}
 \label{eqn:delta-rho}
@@ -14,13 +40,13 @@
 \begin{table}[h!]
   \centering
   \caption{Reference OpenMC eigenvalues for a 2D fuel pin.}
-  \label{table:keff-reference} 
+  \label{tab:keff-reference} 
   \begin{tabular}{c c}
   \toprule
   {\bf Anisotropic} &
   {\bf Isotropic in Lab} \\
   \midrule
-  1.17486 $\pm$ 0.00003 & 1.17421 $\pm$ 0.00002 \\
+  1.17486 $\pm$ 0.00001 & 1.17421 $\pm$ 0.00001 \\
   \bottomrule
 \end{tabular}
 \end{table}
@@ -28,7 +54,7 @@
 \begin{table}[h!]
   \centering
   \caption{The eigenvalue bias with transport-corrected MGXS.}
-  \label{table:keff-bias-aniso} 
+  \label{tab:keff-bias-aniso} 
   \begin{tabular}{c S[table-format=6.1] S[table-format=6.1] S[table-format=6.1]}
   \toprule
   & \multicolumn{3}{c}{{\bf FSR Discretization}} \\
@@ -48,11 +74,10 @@
 \end{tabular}
 \end{table}
 
-
 \begin{table}[h!]
   \centering
   \caption{The eigenvalue bias with isotropic-in-lab scattering.}
-  \label{table:keff-bias-iso-in-lab} 
+  \label{tab:keff-bias-iso-in-lab} 
   \begin{tabular}{c S[table-format=6.1] S[table-format=6.1] S[table-format=6.1]}
   \toprule
   & \multicolumn{3}{c}{{\bf FSR Discretization}} \\
@@ -73,17 +98,28 @@
 \end{table}
 
 
-\begin{itemize}
-\item Slab problem -- horrible flux shape and eigenvalue!!
-\item Pin-Cell
-\item Plot showing bias is driven by resonance groups
-\item Simple 1-group fixed source demonstration
-\end{itemize}
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Diagnosis of Bias}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Multi-Group Flux Bias}
+\label{sec:bias-flux}
+
+first paragraph: present figures
+-Fig.~\ref{fig:rel-err-energy} compares MG and MC flux by energy group
+  -innermost and outermost rings of the fuel pin, and average across all rings
+-Fig.~\ref{fig:rel-err-space} compares MG and MC flux by spatial zone
+  -for three energy group ``ranges'' across all radial rings in the fuel pin
+-describe the three energy ranges
+  -range A: group for the U-238 capture resonance at 6.67 eV
+  -range B: groups spanning the three lowest-lying U-238 capture resonances
+  -range C: all U-238 resonance energy groups
+  
+second paragraph: analyze figures
+-take analysis from my thesis
+-the errors are largest for range A which most tightly encompasses a single resonance
+-errors vary widely across fuel pin
+-tie this into an argument of why this:
+  (1) causes an eigenvalue bias
+  (2) results from loss of angular information with scalar flux-weighted MGXS
+-segue into next section on possible solutions
 
 \begin{figure}[h!]
 \centering
@@ -98,18 +134,3 @@
 \caption{The spatially-varying relative error of the OpenMOC scalar flux with respect to the reference OpenMC flux in energy Ranges A, B, and C.}
 \label{fig:rel-err-space}
 \end{figure}
-
-\begin{itemize}
-\item Assert that angular effects drive the bias
-\item Evidenced by small effect on bias from:
-\begin{itemize}
-\item Isotropic vs. Anisotropic LAB scattering
-\item Spatial mesh refinement
-\end{itemize}
-\item Demonstrate angular dependent cross sections remove bias
-\begin{itemize}
-\item Pin-Cell
-\item Slab
-\end{itemize}
-\item Show angular dependent cross section plots
-\end{itemize}

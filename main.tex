@@ -18,10 +18,10 @@
 \usepackage{subcaption}
 \usepackage{dblfloatfix}
 
-\usepackage{algorithmic,eqparbox,array}
-\renewcommand\algorithmiccomment[1]{
-  \hspace{\fill}\#\ \eqparbox{COMMENT}{#1}
-}
+%\usepackage{algorithmic,eqparbox,array}
+%\renewcommand\algorithmiccomment[1]{
+%  \hspace{\fill}\#\ \eqparbox{COMMENT}{#1}
+%}
 
 \usepackage{todonotes}
 
@@ -33,16 +33,21 @@
 
 \usepackage[scaled]{beramono}
 
-\usepackage{algorithm}
-\usepackage{algorithmic}
 \usepackage{etoolbox}
 \usepackage{listings}
 \usepackage{color}
 
-\renewcommand*{\chapterautorefname}{Chapter}
-\renewcommand*{\sectionautorefname}{Section}
-\renewcommand*{\subsectionautorefname}{Section}
-\renewcommand*{\equationautorefname}{Equation}
+% Algorithm constructs
+\usepackage{algorithm} % Provides algorithm environment
+\usepackage{algorithmicx}       % Provides algorithmic block
+\usepackage{algpseudocode}      % Option of algorithmicx package
+\renewcommand{\thealgorithm}{\thechapter-\arabic{algorithm}}
+\newcommand\Algphase[1]{%
+\vspace*{-.7\baselineskip}\Statex\hspace*{\dimexpr-\algorithmicindent-2pt\relax}\rule{\columnwidth}{0.4pt}%
+\Statex\hspace*{-\algorithmicindent}{#1}%
+\vspace*{-.7\baselineskip}\Statex\hspace*{\dimexpr-\algorithmicindent-2pt\relax}\rule{\columnwidth}{0.4pt}%
+}
+\newcommand{\algrule}[1][.4pt]{\par\vskip.5\baselineskip\hrule height #1\par\vskip.5\baselineskip}
 
 \lstset{
   language=Python,
@@ -148,9 +153,9 @@ Hmm \cite{askew1972moc} \cite{hebert2005ribon}, \cite{hebert1993consistent} \cit
 \input{methodology}
 \input{preservation}
 \input{bias}
-\input{solutions}
-\input{acknowledgements}
+\input{sph}
 \input{conclusions}
+\input{acknowledgements}
 
 \section*{References}
 \bibliography{references}
