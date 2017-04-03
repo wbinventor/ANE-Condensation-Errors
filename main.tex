@@ -1,0 +1,159 @@
+\documentclass[authoryear,5p]{elsarticle}
+
+\renewcommand{\today}{}  % Get rid of date on footer
+\journal{Ann. Nucl. Energy}
+
+\usepackage[bitstream-charter]{mathdesign} % Use BT Charter font
+\usepackage[T1]{fontenc}                   % Use T1 encoding instead of OT1
+\usepackage[utf8]{inputenc}                % Use UTF8 input encoding
+\usepackage{microtype}                     % Improve typography
+\usepackage{amsmath, mathtools}             % AMS Math extensions
+\usepackage{booktabs}                      % Improved table spacing
+\usepackage{booktabs}
+\usepackage{siunitx}
+\usepackage{breqn}
+
+\usepackage[breaklinks=true]{hyperref}
+
+\usepackage{subcaption}
+\usepackage{dblfloatfix}
+
+\usepackage{algorithmic,eqparbox,array}
+\renewcommand\algorithmiccomment[1]{
+  \hspace{\fill}\#\ \eqparbox{COMMENT}{#1}
+}
+
+\usepackage{todonotes}
+
+\usepackage[labelfont=bf]{caption}
+\captionsetup[figure]{labelsep=period, name=Figure}
+\captionsetup[table]{labelsep=period, name=Table}
+\def \figureautorefname {Figure}
+\def \algorithmautorefname {Algorithm}
+
+\usepackage[scaled]{beramono}
+
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{etoolbox}
+\usepackage{listings}
+\usepackage{color}
+
+\renewcommand*{\chapterautorefname}{Chapter}
+\renewcommand*{\sectionautorefname}{Section}
+\renewcommand*{\subsectionautorefname}{Section}
+\renewcommand*{\equationautorefname}{Equation}
+
+\lstset{
+  language=Python,
+  showstringspaces=false,
+  formfeed=\newpage,
+  tabsize=4,
+  commentstyle=\itshape,
+  basicstyle=\ttfamily,
+  morekeywords={models, lambda, forms},
+  frame=single
+}
+
+\newcommand{\code}[2]{
+  \subsection*{#1}
+  \lstinputlisting{#2}
+}
+
+\hypersetup{colorlinks=true,
+  pdftitle={An Analysis of Condensation Errors in Multi-Group Cross-Section Generation for Fine-Mesh Neutron Transport Calculations},
+  pdfauthor={William Boyd, Nathan Gibson, Benoit Forget and Kord Smith.}}
+
+\begin{document}
+
+\begin{frontmatter}
+
+\title{An Analysis of Condensation Errors in Multi-Group Cross-Section Generation for Fine-Mesh Neutron Transport Calculations}
+
+\author{William Boyd\corref{cor1}}
+\ead{wboyd@mit.edu}
+
+\author{Nathan Gibson\corref{}}
+\ead{ngibson@mit.edu}
+
+\author{Benoit Forget\corref{}}
+\ead{bforget@mit.edu}
+
+\author{Kord Smith\corref{}}
+\ead{kord@mit.edu}
+
+\address{Massachusetts Institute of Technology, Department of Nuclear Science and Engineering, 77 Massachusetts Avenue, Building 24, Cambridge, MA 02139, United States\vspace{-8ex}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{abstract}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{abstract}
+
+\begin{keyword}
+Multi-group cross-sections, energy condensation, spatial homogenization, superhomogenisation factors
+\end{keyword}
+
+\end{frontmatter}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Ben's Outline}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Hmm \cite{askew1972moc} \cite{hebert2005ribon}, \cite{hebert1993consistent} \cite{hebert1997advances}
+
+\begin{itemize}
+\item Problem Statement
+\begin{itemize}
+\item Cross section collapse cannot preserve reaction rates
+\item SPH factors, heterogeneity factors, discontinuity factors
+\end{itemize}
+\item 1D analysis (or 2D Fake)
+\begin{itemize}
+\item Methodology for you 1D slab with single square/SLBW resonance (MOC/CPM solver)
+\item Tables of error by
+\begin{itemize}
+\item resonance peak
+\item resonance width
+\item group width
+\end{itemize}
+\item Angular dependent xs coupled with spatial discretization
+\end{itemize}
+\item 2D analysis (or 2D Real)
+\begin{itemize}
+\item Continuous energy, multi-nuclide, 4 region pin cell
+\item show bias for 2-70 groups (CASMO structures)
+\begin{itemize}
+\item Full OpenMC
+\item Iso-in-lab
+\item Spatial discretization
+\item show effect of discretizing resonance
+\end{itemize}
+\item look at groupwise flux and pcm errors by region, isotope
+\item fixed source OpenMC-OpenMOC shows same phenomenon
+\item SPH factors from OpenMOC by group/region
+\end{itemize}
+\item Possible solutions
+\begin{itemize}
+\item Angular dependent XS
+\item SPH vs just fudging transport xs
+\item Absorption rate in U238 vs SPH factor by resonance group
+\end{itemize}
+\end{itemize}
+
+\input{introduction}
+\input{flux-separability}
+\input{methodology}
+\input{preservation}
+\input{bias}
+\input{solutions}
+\input{acknowledgements}
+\input{conclusions}
+
+\section*{References}
+\bibliography{references}
+\bibliographystyle{annals}
+
+\end{document}

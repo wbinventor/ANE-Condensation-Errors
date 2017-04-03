@@ -1,4 +1,6 @@
 ## Core latex/pdflatex auxiliary files:
+*.spl
+*.pdf
 *.aux
 *.lof
 *.log
@@ -178,3 +180,6 @@ TSWLatexianTemp*
 
 # KBibTeX
 *~[0-9]*
+
+# OpenMC/MOC
+*.h5
