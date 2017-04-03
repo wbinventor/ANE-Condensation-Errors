@@ -3,28 +3,10 @@
 \label{sec:intro}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
--somewhwere discuss how 
+The nuclear reactor physics community has long strived for deterministic neutron transport-based tools for whole-core reactor analysis. A key challenge for whole-core multi-group transport methods is accurate reactor agnostic multi-group cross section (MGXS) generation. The MGXS generation process applies a series of approximations to produce spatially homogenized and energy condensed MGXS in each spatial zone and energy group. Many approximations related to multi-group theory, including the selection of discretized energy group structures and the truncation of the Legendre expansion of the multi-group scattering kernel, are widely studied in the literature. However, the practical impact of the flux separability approximation, which permits the use of the scalar rather than the angular neutron flux to weight the continuous energy cross sections, is less understood. This paper investigates the flux separability approximation and quantifies its significance for heterogeneous PWR problems.
 
-first paragraph: motivation
--motivate need for high-fidelity transport methods
--compare contrast MC with deterministic methods
--adapt from thesis intro
+This work employs Monte Carlo (MC) neutron transport simulations to generate MGXS. Monte Carlo methods have increasingly been used to generate few group constants for coarse mesh diffusion, most notably by the Serpent MC code \citep{serpent2013manual}, and to a much lesser extent, for high-fidelity neutron transport methods \citep{redmond1997multigroup, nelson2014improved, cai2014condensation, boyd2016thesis}. The advantage of a MC-based approach is that all of the relevant physics are directly embedded into MGXS by weighting the continuous energy cross sections with a statistical proxy to the ``true'' neutron flux. However, this paper shows that even when the ``true'' scalar flux is used to generate MGXS, the flux separability approximation results in a non-negligible eigenvalue bias between continuous energy and multi-group calculations due to under-prediction of U-238 capture in resonance energy groups.
 
-second paragraph: MGXS
--need MGXS for deterministic methods
--need the flux to compute MGXS
+% In addition, a reference solution may be directly computed from the same MC simulation to compare with the multi-group transport solution.
 
-third paragraph: MGXS with MC
--use MC for reference calculation
--use MC to compute MGXS with a statistical proxy to the flux
--still approx. even with ``true'' flux-weighting
-
-fourth paragraph: outline paper
--segue that this paper investigates the impact of one such approx.
-  -namely, the impact of the flux separability approximation
--Sec.~\ref{sec:flux-separability} introduces the flux separability approximation
--Sec.~\ref{sec:methodology}
--Sec.~\ref{sec:preservation}
--Sec.~\ref{sec:bias} introduces the impact of the eigenvalue bias
--Sec.~\ref{sec:solutions}
--Sec.~\ref{sec:conclusions}
+The content in this paper is organized as follows. The flux separability approximation is introduced in~\autoref{sec:flux-separability}. The methodology used to rigorously quantify the impact of the approximation on PWR problems -- including two benchmark problems and simulation tools -- are described in~\autoref{sec:methodology}. \autoref{sec:preservation} presents a toy problem which illustrates how scalar flux-weighting of the cross sections cannot preserve the reaction rate for a single resonant energy group, while \autoref{sec:bias} investigates the flux separability approximation in the context of a fully-detailed, critical PWR fuel pin cell. SuPerHomog\'{e}n\'{e}isation (SPH) factors is explored in~\autoref{sec:sph} as one possible solution to this approximation, while other approaches, including angular-dependent MGXS, are outlined in~\autoref{sec:conclusions}.

@@ -65,6 +65,12 @@
   \lstinputlisting{#2}
 }
 
+\def\sectionautorefname{Sec.}
+\def\subsectionautorefname{Sec.}
+\def\equationautorefname{Eq.}
+\def\figureautorefname{Fig.}
+\def\algorithmautorefname{Alg.}
+
 \hypersetup{colorlinks=true,
   pdftitle={An Analysis of Condensation Errors in Multi-Group Cross-Section Generation for Fine-Mesh Neutron Transport Calculations},
   pdfauthor={William Boyd, Nathan Gibson, Benoit Forget and Kord Smith.}}
@@ -79,7 +85,7 @@
 \ead{wboyd@mit.edu}
 
 \author{Nathan Gibson\corref{}}
-\ead{ngibson@mit.edu}
+\ead{nathan.gibson@unnpp.gov}
 
 \author{Benoit Forget\corref{}}
 \ead{bforget@mit.edu}
@@ -102,51 +108,51 @@ Multi-group cross-sections, energy condensation, spatial homogenization, superho
 
 \end{frontmatter}
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section*{Ben's Outline}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\section*{Ben's Outline}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Hmm \cite{askew1972moc} \cite{hebert2005ribon}, \cite{hebert1993consistent} \cite{hebert1997advances}
 
-\begin{itemize}
-\item Problem Statement
-\begin{itemize}
-\item Cross section collapse cannot preserve reaction rates
-\item SPH factors, heterogeneity factors, discontinuity factors
-\end{itemize}
-\item 1D analysis (or 2D Fake)
-\begin{itemize}
-\item Methodology for you 1D slab with single square/SLBW resonance (MOC/CPM solver)
-\item Tables of error by
-\begin{itemize}
-\item resonance peak
-\item resonance width
-\item group width
-\end{itemize}
-\item Angular dependent xs coupled with spatial discretization
-\end{itemize}
-\item 2D analysis (or 2D Real)
-\begin{itemize}
-\item Continuous energy, multi-nuclide, 4 region pin cell
-\item show bias for 2-70 groups (CASMO structures)
-\begin{itemize}
-\item Full OpenMC
-\item Iso-in-lab
-\item Spatial discretization
-\item show effect of discretizing resonance
-\end{itemize}
-\item look at groupwise flux and pcm errors by region, isotope
-\item fixed source OpenMC-OpenMOC shows same phenomenon
-\item SPH factors from OpenMOC by group/region
-\end{itemize}
-\item Possible solutions
-\begin{itemize}
-\item Angular dependent XS
-\item SPH vs just fudging transport xs
-\item Absorption rate in U238 vs SPH factor by resonance group
-\end{itemize}
-\end{itemize}
+%\begin{itemize}
+%\item Problem Statement
+%\begin{itemize}
+%\item Cross section collapse cannot preserve reaction rates
+%\item SPH factors, heterogeneity factors, discontinuity factors
+%\end{itemize}
+%\item 1D analysis (or 2D Fake)
+%\begin{itemize}
+%\item Methodology for you 1D slab with single square/SLBW resonance (MOC/CPM solver)
+%\item Tables of error by
+%\begin{itemize}
+%\item resonance peak
+%\item resonance width
+%\item group width
+%\end{itemize}
+%\item Angular dependent xs coupled with spatial discretization
+%\end{itemize}
+%\item 2D analysis (or 2D Real)
+%\begin{itemize}
+%\item Continuous energy, multi-nuclide, 4 region pin cell
+%\item show bias for 2-70 groups (CASMO structures)
+%\begin{itemize}
+%\item Full OpenMC
+%\item Iso-in-lab
+%\item Spatial discretization
+%\item show effect of discretizing resonance
+%\end{itemize}
+%\item look at groupwise flux and pcm errors by region, isotope
+%\item fixed source OpenMC-OpenMOC shows same phenomenon
+%\item SPH factors from OpenMOC by group/region
+%\end{itemize}
+%\item Possible solutions
+%\begin{itemize}
+%\item Angular dependent XS
+%\item SPH vs just fudging transport xs
+%\item Absorption rate in U238 vs SPH factor by resonance group
+%\end{itemize}
+%\end{itemize}
 
 \input{introduction}
 \input{flux-separability}
