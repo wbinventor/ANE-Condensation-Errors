@@ -11,9 +11,8 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 import openmc.mgxs
-import openmc.opencg_compatible
+import openmc.openmoc_compatible
 import openmoc
-import openmoc.opencg_compatible
 from infermc.energy_groups import group_structures
 import pyne.ace
 
@@ -109,15 +108,14 @@ opts = openmoc.options.Options()
 
 # Query the user for the number of energy groups
 scatter = 'iso-in-lab'
-mesh = 16
 num_groups = 70
 
-directory = '{}/{}x'.format(scatter, mesh)
+directory = '{}/'.format(scatter)
 
-# Create an OpenMOC Geometry from the OpenCG Geometry
+# Create an OpenMOC Geometry from the OpenMC Geometry
 mgxs_lib = openmc.mgxs.Library.load_from_file(directory=directory)
 openmoc_geometry = \
-    openmoc.opencg_compatible.get_openmoc_geometry(mgxs_lib.opencg_geometry)
+    openmc.openmoc_compatible.get_openmoc_geometry(mgxs_lib.geometry)
 
 coarse_groups = group_structures['CASMO']['{}-group'.format(num_groups)]
 mgxs_lib = mgxs_lib.get_condensed_library(coarse_groups)
@@ -159,7 +157,7 @@ openmc_fluxes, openmoc_fluxes, volumes, distances, fuel_indices, new_sph = \
 
 # Extract energy group edges
 group_edges = mgxs_lib.energy_groups.group_edges
-group_edges *= 1e6      # Convert to units of eV
+#group_edges *= 1e6      # Convert to units of eV
 group_edges[0] = 1e-5   # Adjust lower bound (for loglog scaling)
 
 # Extend the mgxs values array for matplotlib's step plot of fluxes

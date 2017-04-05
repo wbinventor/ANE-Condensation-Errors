@@ -9,7 +9,7 @@ import numpy as np
 
 import openmc.mgxs
 import openmoc
-from openmoc.opencg_compatible import get_openmoc_geometry
+from openmoc.openmoc_compatible import get_openmoc_geometry
 from infermc.energy_groups import group_structures
 
 
@@ -83,10 +83,9 @@ opts = openmoc.options.Options()
 
 groups = [1, 2, 4, 8, 16, 25, 40, 70]
 scatter = 'iso-in-lab'
-num_mesh = 16
 
 # Initialize a fine (70-)group MGXS Library from OpenMC statepoint data
-directory = '{}/{}x/'.format(scatter, num_mesh)
+directory = '{}/'.format(scatter)
 sp = openmc.StatePoint(directory + 'statepoint.100.h5')
 mgxs_lib = openmc.mgxs.Library.load_from_file(directory=directory)
 
@@ -103,14 +102,16 @@ for i, num_groups in enumerate(groups):
     coarse_groups = group_structures['CASMO']['{}-group'.format(num_groups)]
     condense_lib = mgxs_lib.get_condensed_library(coarse_groups)
 
-    # Create an OpenMOC Geometry from the OpenCG Geometry
-    openmoc_geometry = get_openmoc_geometry(condense_lib.opencg_geometry)
+    # Create an OpenMOC Geometry from the OpenMC Geometry
+    openmoc_geometry = get_openmoc_geometry(condense_lib.geometry)
     openmoc.materialize.load_openmc_mgxs_lib(condense_lib, openmoc_geometry)
 
     # Discretize the geometry into angular sectors
+    '''
     cells = openmoc_geometry.getAllMaterialCells()
     for cell_id, cell in cells.items():
         cell.setNumSectors(8)
+    '''
 
     # Generate tracks
     track_generator = openmoc.TrackGenerator(openmoc_geometry, 512, 0.001)
