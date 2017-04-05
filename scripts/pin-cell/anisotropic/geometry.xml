@@ -1,0 +1,352 @@
+<?xml version='1.0' encoding='utf-8'?>
+<geometry>
+    <cell fill="10001" id="10000" name="fuel" region="-10000" universe="10000" />
+    <cell fill="10002" id="10001" name="gap" region="10000 -10001" universe="10000" />
+    <cell fill="10003" id="10002" name="clad" region="10001 -10002" universe="10000" />
+    <cell fill="10004" id="10003" name="water" region="10002" universe="10000" />
+    <cell fill="10000" id="10004" name="root" region="10003 -10004 10005 -10006 10007 -10008" universe="0" />
+    <cell id="10013" material="10000" name="fuel" region="-10000 10009 -10010 -10017 10018" universe="10001" />
+    <cell id="10014" material="10000" name="fuel" region="-10000 10010 -10011 -10017 10018" universe="10001" />
+    <cell id="10015" material="10000" name="fuel" region="-10000 10011 -10012 -10017 10018" universe="10001" />
+    <cell id="10016" material="10000" name="fuel" region="-10000 10012 -10013 -10017 10018" universe="10001" />
+    <cell id="10017" material="10000" name="fuel" region="-10000 10013 -10014 -10017 10018" universe="10001" />
+    <cell id="10018" material="10000" name="fuel" region="-10000 10014 -10015 -10017 10018" universe="10001" />
+    <cell id="10019" material="10000" name="fuel" region="-10000 10015 -10016 -10017 10018" universe="10001" />
+    <cell id="10020" material="10000" name="fuel" region="-10000 10016 -10009 -10017 10018" universe="10001" />
+    <cell id="10021" material="10000" name="fuel" region="-10000 10009 -10010 -10018 10019" universe="10001" />
+    <cell id="10022" material="10000" name="fuel" region="-10000 10010 -10011 -10018 10019" universe="10001" />
+    <cell id="10023" material="10000" name="fuel" region="-10000 10011 -10012 -10018 10019" universe="10001" />
+    <cell id="10024" material="10000" name="fuel" region="-10000 10012 -10013 -10018 10019" universe="10001" />
+    <cell id="10025" material="10000" name="fuel" region="-10000 10013 -10014 -10018 10019" universe="10001" />
+    <cell id="10026" material="10000" name="fuel" region="-10000 10014 -10015 -10018 10019" universe="10001" />
+    <cell id="10027" material="10000" name="fuel" region="-10000 10015 -10016 -10018 10019" universe="10001" />
+    <cell id="10028" material="10000" name="fuel" region="-10000 10016 -10009 -10018 10019" universe="10001" />
+    <cell id="10029" material="10000" name="fuel" region="-10000 10009 -10010 -10019 10020" universe="10001" />
+    <cell id="10030" material="10000" name="fuel" region="-10000 10010 -10011 -10019 10020" universe="10001" />
+    <cell id="10031" material="10000" name="fuel" region="-10000 10011 -10012 -10019 10020" universe="10001" />
+    <cell id="10032" material="10000" name="fuel" region="-10000 10012 -10013 -10019 10020" universe="10001" />
+    <cell id="10033" material="10000" name="fuel" region="-10000 10013 -10014 -10019 10020" universe="10001" />
+    <cell id="10034" material="10000" name="fuel" region="-10000 10014 -10015 -10019 10020" universe="10001" />
+    <cell id="10035" material="10000" name="fuel" region="-10000 10015 -10016 -10019 10020" universe="10001" />
+    <cell id="10036" material="10000" name="fuel" region="-10000 10016 -10009 -10019 10020" universe="10001" />
+    <cell id="10037" material="10000" name="fuel" region="-10000 10009 -10010 -10020 10021" universe="10001" />
+    <cell id="10038" material="10000" name="fuel" region="-10000 10010 -10011 -10020 10021" universe="10001" />
+    <cell id="10039" material="10000" name="fuel" region="-10000 10011 -10012 -10020 10021" universe="10001" />
+    <cell id="10040" material="10000" name="fuel" region="-10000 10012 -10013 -10020 10021" universe="10001" />
+    <cell id="10041" material="10000" name="fuel" region="-10000 10013 -10014 -10020 10021" universe="10001" />
+    <cell id="10042" material="10000" name="fuel" region="-10000 10014 -10015 -10020 10021" universe="10001" />
+    <cell id="10043" material="10000" name="fuel" region="-10000 10015 -10016 -10020 10021" universe="10001" />
+    <cell id="10044" material="10000" name="fuel" region="-10000 10016 -10009 -10020 10021" universe="10001" />
+    <cell id="10045" material="10000" name="fuel" region="-10000 10009 -10010 -10021 10022" universe="10001" />
+    <cell id="10046" material="10000" name="fuel" region="-10000 10010 -10011 -10021 10022" universe="10001" />
+    <cell id="10047" material="10000" name="fuel" region="-10000 10011 -10012 -10021 10022" universe="10001" />
+    <cell id="10048" material="10000" name="fuel" region="-10000 10012 -10013 -10021 10022" universe="10001" />
+    <cell id="10049" material="10000" name="fuel" region="-10000 10013 -10014 -10021 10022" universe="10001" />
+    <cell id="10050" material="10000" name="fuel" region="-10000 10014 -10015 -10021 10022" universe="10001" />
+    <cell id="10051" material="10000" name="fuel" region="-10000 10015 -10016 -10021 10022" universe="10001" />
+    <cell id="10052" material="10000" name="fuel" region="-10000 10016 -10009 -10021 10022" universe="10001" />
+    <cell id="10053" material="10000" name="fuel" region="-10000 10009 -10010 -10022 10023" universe="10001" />
+    <cell id="10054" material="10000" name="fuel" region="-10000 10010 -10011 -10022 10023" universe="10001" />
+    <cell id="10055" material="10000" name="fuel" region="-10000 10011 -10012 -10022 10023" universe="10001" />
+    <cell id="10056" material="10000" name="fuel" region="-10000 10012 -10013 -10022 10023" universe="10001" />
+    <cell id="10057" material="10000" name="fuel" region="-10000 10013 -10014 -10022 10023" universe="10001" />
+    <cell id="10058" material="10000" name="fuel" region="-10000 10014 -10015 -10022 10023" universe="10001" />
+    <cell id="10059" material="10000" name="fuel" region="-10000 10015 -10016 -10022 10023" universe="10001" />
+    <cell id="10060" material="10000" name="fuel" region="-10000 10016 -10009 -10022 10023" universe="10001" />
+    <cell id="10061" material="10000" name="fuel" region="-10000 10009 -10010 -10023 10024" universe="10001" />
+    <cell id="10062" material="10000" name="fuel" region="-10000 10010 -10011 -10023 10024" universe="10001" />
+    <cell id="10063" material="10000" name="fuel" region="-10000 10011 -10012 -10023 10024" universe="10001" />
+    <cell id="10064" material="10000" name="fuel" region="-10000 10012 -10013 -10023 10024" universe="10001" />
+    <cell id="10065" material="10000" name="fuel" region="-10000 10013 -10014 -10023 10024" universe="10001" />
+    <cell id="10066" material="10000" name="fuel" region="-10000 10014 -10015 -10023 10024" universe="10001" />
+    <cell id="10067" material="10000" name="fuel" region="-10000 10015 -10016 -10023 10024" universe="10001" />
+    <cell id="10068" material="10000" name="fuel" region="-10000 10016 -10009 -10023 10024" universe="10001" />
+    <cell id="10069" material="10000" name="fuel" region="-10000 10009 -10010 -10024 10025" universe="10001" />
+    <cell id="10070" material="10000" name="fuel" region="-10000 10010 -10011 -10024 10025" universe="10001" />
+    <cell id="10071" material="10000" name="fuel" region="-10000 10011 -10012 -10024 10025" universe="10001" />
+    <cell id="10072" material="10000" name="fuel" region="-10000 10012 -10013 -10024 10025" universe="10001" />
+    <cell id="10073" material="10000" name="fuel" region="-10000 10013 -10014 -10024 10025" universe="10001" />
+    <cell id="10074" material="10000" name="fuel" region="-10000 10014 -10015 -10024 10025" universe="10001" />
+    <cell id="10075" material="10000" name="fuel" region="-10000 10015 -10016 -10024 10025" universe="10001" />
+    <cell id="10076" material="10000" name="fuel" region="-10000 10016 -10009 -10024 10025" universe="10001" />
+    <cell id="10077" material="10000" name="fuel" region="-10000 10009 -10010 -10025 10026" universe="10001" />
+    <cell id="10078" material="10000" name="fuel" region="-10000 10010 -10011 -10025 10026" universe="10001" />
+    <cell id="10079" material="10000" name="fuel" region="-10000 10011 -10012 -10025 10026" universe="10001" />
+    <cell id="10080" material="10000" name="fuel" region="-10000 10012 -10013 -10025 10026" universe="10001" />
+    <cell id="10081" material="10000" name="fuel" region="-10000 10013 -10014 -10025 10026" universe="10001" />
+    <cell id="10082" material="10000" name="fuel" region="-10000 10014 -10015 -10025 10026" universe="10001" />
+    <cell id="10083" material="10000" name="fuel" region="-10000 10015 -10016 -10025 10026" universe="10001" />
+    <cell id="10084" material="10000" name="fuel" region="-10000 10016 -10009 -10025 10026" universe="10001" />
+    <cell id="10085" material="10000" name="fuel" region="-10000 10009 -10010 -10026 10027" universe="10001" />
+    <cell id="10086" material="10000" name="fuel" region="-10000 10010 -10011 -10026 10027" universe="10001" />
+    <cell id="10087" material="10000" name="fuel" region="-10000 10011 -10012 -10026 10027" universe="10001" />
+    <cell id="10088" material="10000" name="fuel" region="-10000 10012 -10013 -10026 10027" universe="10001" />
+    <cell id="10089" material="10000" name="fuel" region="-10000 10013 -10014 -10026 10027" universe="10001" />
+    <cell id="10090" material="10000" name="fuel" region="-10000 10014 -10015 -10026 10027" universe="10001" />
+    <cell id="10091" material="10000" name="fuel" region="-10000 10015 -10016 -10026 10027" universe="10001" />
+    <cell id="10092" material="10000" name="fuel" region="-10000 10016 -10009 -10026 10027" universe="10001" />
+    <cell id="10093" material="10000" name="fuel" region="-10000 10009 -10010 -10027 10028" universe="10001" />
+    <cell id="10094" material="10000" name="fuel" region="-10000 10010 -10011 -10027 10028" universe="10001" />
+    <cell id="10095" material="10000" name="fuel" region="-10000 10011 -10012 -10027 10028" universe="10001" />
+    <cell id="10096" material="10000" name="fuel" region="-10000 10012 -10013 -10027 10028" universe="10001" />
+    <cell id="10097" material="10000" name="fuel" region="-10000 10013 -10014 -10027 10028" universe="10001" />
+    <cell id="10098" material="10000" name="fuel" region="-10000 10014 -10015 -10027 10028" universe="10001" />
+    <cell id="10099" material="10000" name="fuel" region="-10000 10015 -10016 -10027 10028" universe="10001" />
+    <cell id="10100" material="10000" name="fuel" region="-10000 10016 -10009 -10027 10028" universe="10001" />
+    <cell id="10101" material="10000" name="fuel" region="-10000 10009 -10010 -10028 10029" universe="10001" />
+    <cell id="10102" material="10000" name="fuel" region="-10000 10010 -10011 -10028 10029" universe="10001" />
+    <cell id="10103" material="10000" name="fuel" region="-10000 10011 -10012 -10028 10029" universe="10001" />
+    <cell id="10104" material="10000" name="fuel" region="-10000 10012 -10013 -10028 10029" universe="10001" />
+    <cell id="10105" material="10000" name="fuel" region="-10000 10013 -10014 -10028 10029" universe="10001" />
+    <cell id="10106" material="10000" name="fuel" region="-10000 10014 -10015 -10028 10029" universe="10001" />
+    <cell id="10107" material="10000" name="fuel" region="-10000 10015 -10016 -10028 10029" universe="10001" />
+    <cell id="10108" material="10000" name="fuel" region="-10000 10016 -10009 -10028 10029" universe="10001" />
+    <cell id="10109" material="10000" name="fuel" region="-10000 10009 -10010 -10029 10030" universe="10001" />
+    <cell id="10110" material="10000" name="fuel" region="-10000 10010 -10011 -10029 10030" universe="10001" />
+    <cell id="10111" material="10000" name="fuel" region="-10000 10011 -10012 -10029 10030" universe="10001" />
+    <cell id="10112" material="10000" name="fuel" region="-10000 10012 -10013 -10029 10030" universe="10001" />
+    <cell id="10113" material="10000" name="fuel" region="-10000 10013 -10014 -10029 10030" universe="10001" />
+    <cell id="10114" material="10000" name="fuel" region="-10000 10014 -10015 -10029 10030" universe="10001" />
+    <cell id="10115" material="10000" name="fuel" region="-10000 10015 -10016 -10029 10030" universe="10001" />
+    <cell id="10116" material="10000" name="fuel" region="-10000 10016 -10009 -10029 10030" universe="10001" />
+    <cell id="10117" material="10000" name="fuel" region="-10000 10009 -10010 -10030 10031" universe="10001" />
+    <cell id="10118" material="10000" name="fuel" region="-10000 10010 -10011 -10030 10031" universe="10001" />
+    <cell id="10119" material="10000" name="fuel" region="-10000 10011 -10012 -10030 10031" universe="10001" />
+    <cell id="10120" material="10000" name="fuel" region="-10000 10012 -10013 -10030 10031" universe="10001" />
+    <cell id="10121" material="10000" name="fuel" region="-10000 10013 -10014 -10030 10031" universe="10001" />
+    <cell id="10122" material="10000" name="fuel" region="-10000 10014 -10015 -10030 10031" universe="10001" />
+    <cell id="10123" material="10000" name="fuel" region="-10000 10015 -10016 -10030 10031" universe="10001" />
+    <cell id="10124" material="10000" name="fuel" region="-10000 10016 -10009 -10030 10031" universe="10001" />
+    <cell id="10125" material="10000" name="fuel" region="-10000 10009 -10010 -10031 10032" universe="10001" />
+    <cell id="10126" material="10000" name="fuel" region="-10000 10010 -10011 -10031 10032" universe="10001" />
+    <cell id="10127" material="10000" name="fuel" region="-10000 10011 -10012 -10031 10032" universe="10001" />
+    <cell id="10128" material="10000" name="fuel" region="-10000 10012 -10013 -10031 10032" universe="10001" />
+    <cell id="10129" material="10000" name="fuel" region="-10000 10013 -10014 -10031 10032" universe="10001" />
+    <cell id="10130" material="10000" name="fuel" region="-10000 10014 -10015 -10031 10032" universe="10001" />
+    <cell id="10131" material="10000" name="fuel" region="-10000 10015 -10016 -10031 10032" universe="10001" />
+    <cell id="10132" material="10000" name="fuel" region="-10000 10016 -10009 -10031 10032" universe="10001" />
+    <cell id="10133" material="10000" name="fuel" region="-10000 10009 -10010 -10032" universe="10001" />
+    <cell id="10134" material="10000" name="fuel" region="-10000 10010 -10011 -10032" universe="10001" />
+    <cell id="10135" material="10000" name="fuel" region="-10000 10011 -10012 -10032" universe="10001" />
+    <cell id="10136" material="10000" name="fuel" region="-10000 10012 -10013 -10032" universe="10001" />
+    <cell id="10137" material="10000" name="fuel" region="-10000 10013 -10014 -10032" universe="10001" />
+    <cell id="10138" material="10000" name="fuel" region="-10000 10014 -10015 -10032" universe="10001" />
+    <cell id="10139" material="10000" name="fuel" region="-10000 10015 -10016 -10032" universe="10001" />
+    <cell id="10140" material="10000" name="fuel" region="-10000 10016 -10009 -10032" universe="10001" />
+    <cell id="10141" material="10001" name="gap" region="10000 -10001 10033 -10034" universe="10002" />
+    <cell id="10142" material="10001" name="gap" region="10000 -10001 10034 -10035" universe="10002" />
+    <cell id="10143" material="10001" name="gap" region="10000 -10001 10035 -10036" universe="10002" />
+    <cell id="10144" material="10001" name="gap" region="10000 -10001 10036 -10037" universe="10002" />
+    <cell id="10145" material="10001" name="gap" region="10000 -10001 10037 -10038" universe="10002" />
+    <cell id="10146" material="10001" name="gap" region="10000 -10001 10038 -10039" universe="10002" />
+    <cell id="10147" material="10001" name="gap" region="10000 -10001 10039 -10040" universe="10002" />
+    <cell id="10148" material="10001" name="gap" region="10000 -10001 10040 -10033" universe="10002" />
+    <cell id="10149" material="10002" name="clad" region="10001 -10002 10041 -10042" universe="10003" />
+    <cell id="10150" material="10002" name="clad" region="10001 -10002 10042 -10043" universe="10003" />
+    <cell id="10151" material="10002" name="clad" region="10001 -10002 10043 -10044" universe="10003" />
+    <cell id="10152" material="10002" name="clad" region="10001 -10002 10044 -10045" universe="10003" />
+    <cell id="10153" material="10002" name="clad" region="10001 -10002 10045 -10046" universe="10003" />
+    <cell id="10154" material="10002" name="clad" region="10001 -10002 10046 -10047" universe="10003" />
+    <cell id="10155" material="10002" name="clad" region="10001 -10002 10047 -10048" universe="10003" />
+    <cell id="10156" material="10002" name="clad" region="10001 -10002 10048 -10041" universe="10003" />
+    <cell id="10165" material="10003" name="water" region="10002 10049 -10050 10058" universe="10004" />
+    <cell id="10166" material="10003" name="water" region="10002 10050 -10051 10058" universe="10004" />
+    <cell id="10167" material="10003" name="water" region="10002 10051 -10052 10058" universe="10004" />
+    <cell id="10168" material="10003" name="water" region="10002 10052 -10053 10058" universe="10004" />
+    <cell id="10169" material="10003" name="water" region="10002 10053 -10054 10058" universe="10004" />
+    <cell id="10170" material="10003" name="water" region="10002 10054 -10055 10058" universe="10004" />
+    <cell id="10171" material="10003" name="water" region="10002 10055 -10056 10058" universe="10004" />
+    <cell id="10172" material="10003" name="water" region="10002 10056 -10049 10058" universe="10004" />
+    <cell id="10173" material="10003" name="water" region="10002 10049 -10050 -10058 10059" universe="10004" />
+    <cell id="10174" material="10003" name="water" region="10002 10050 -10051 -10058 10059" universe="10004" />
+    <cell id="10175" material="10003" name="water" region="10002 10051 -10052 -10058 10059" universe="10004" />
+    <cell id="10176" material="10003" name="water" region="10002 10052 -10053 -10058 10059" universe="10004" />
+    <cell id="10177" material="10003" name="water" region="10002 10053 -10054 -10058 10059" universe="10004" />
+    <cell id="10178" material="10003" name="water" region="10002 10054 -10055 -10058 10059" universe="10004" />
+    <cell id="10179" material="10003" name="water" region="10002 10055 -10056 -10058 10059" universe="10004" />
+    <cell id="10180" material="10003" name="water" region="10002 10056 -10049 -10058 10059" universe="10004" />
+    <cell id="10181" material="10003" name="water" region="10002 10049 -10050 -10059 10060" universe="10004" />
+    <cell id="10182" material="10003" name="water" region="10002 10050 -10051 -10059 10060" universe="10004" />
+    <cell id="10183" material="10003" name="water" region="10002 10051 -10052 -10059 10060" universe="10004" />
+    <cell id="10184" material="10003" name="water" region="10002 10052 -10053 -10059 10060" universe="10004" />
+    <cell id="10185" material="10003" name="water" region="10002 10053 -10054 -10059 10060" universe="10004" />
+    <cell id="10186" material="10003" name="water" region="10002 10054 -10055 -10059 10060" universe="10004" />
+    <cell id="10187" material="10003" name="water" region="10002 10055 -10056 -10059 10060" universe="10004" />
+    <cell id="10188" material="10003" name="water" region="10002 10056 -10049 -10059 10060" universe="10004" />
+    <cell id="10189" material="10003" name="water" region="10002 10049 -10050 -10060 10061" universe="10004" />
+    <cell id="10190" material="10003" name="water" region="10002 10050 -10051 -10060 10061" universe="10004" />
+    <cell id="10191" material="10003" name="water" region="10002 10051 -10052 -10060 10061" universe="10004" />
+    <cell id="10192" material="10003" name="water" region="10002 10052 -10053 -10060 10061" universe="10004" />
+    <cell id="10193" material="10003" name="water" region="10002 10053 -10054 -10060 10061" universe="10004" />
+    <cell id="10194" material="10003" name="water" region="10002 10054 -10055 -10060 10061" universe="10004" />
+    <cell id="10195" material="10003" name="water" region="10002 10055 -10056 -10060 10061" universe="10004" />
+    <cell id="10196" material="10003" name="water" region="10002 10056 -10049 -10060 10061" universe="10004" />
+    <cell id="10197" material="10003" name="water" region="10002 10049 -10050 -10061 10062" universe="10004" />
+    <cell id="10198" material="10003" name="water" region="10002 10050 -10051 -10061 10062" universe="10004" />
+    <cell id="10199" material="10003" name="water" region="10002 10051 -10052 -10061 10062" universe="10004" />
+    <cell id="10200" material="10003" name="water" region="10002 10052 -10053 -10061 10062" universe="10004" />
+    <cell id="10201" material="10003" name="water" region="10002 10053 -10054 -10061 10062" universe="10004" />
+    <cell id="10202" material="10003" name="water" region="10002 10054 -10055 -10061 10062" universe="10004" />
+    <cell id="10203" material="10003" name="water" region="10002 10055 -10056 -10061 10062" universe="10004" />
+    <cell id="10204" material="10003" name="water" region="10002 10056 -10049 -10061 10062" universe="10004" />
+    <cell id="10205" material="10003" name="water" region="10002 10049 -10050 -10062 10063" universe="10004" />
+    <cell id="10206" material="10003" name="water" region="10002 10050 -10051 -10062 10063" universe="10004" />
+    <cell id="10207" material="10003" name="water" region="10002 10051 -10052 -10062 10063" universe="10004" />
+    <cell id="10208" material="10003" name="water" region="10002 10052 -10053 -10062 10063" universe="10004" />
+    <cell id="10209" material="10003" name="water" region="10002 10053 -10054 -10062 10063" universe="10004" />
+    <cell id="10210" material="10003" name="water" region="10002 10054 -10055 -10062 10063" universe="10004" />
+    <cell id="10211" material="10003" name="water" region="10002 10055 -10056 -10062 10063" universe="10004" />
+    <cell id="10212" material="10003" name="water" region="10002 10056 -10049 -10062 10063" universe="10004" />
+    <cell id="10213" material="10003" name="water" region="10002 10049 -10050 -10063 10064" universe="10004" />
+    <cell id="10214" material="10003" name="water" region="10002 10050 -10051 -10063 10064" universe="10004" />
+    <cell id="10215" material="10003" name="water" region="10002 10051 -10052 -10063 10064" universe="10004" />
+    <cell id="10216" material="10003" name="water" region="10002 10052 -10053 -10063 10064" universe="10004" />
+    <cell id="10217" material="10003" name="water" region="10002 10053 -10054 -10063 10064" universe="10004" />
+    <cell id="10218" material="10003" name="water" region="10002 10054 -10055 -10063 10064" universe="10004" />
+    <cell id="10219" material="10003" name="water" region="10002 10055 -10056 -10063 10064" universe="10004" />
+    <cell id="10220" material="10003" name="water" region="10002 10056 -10049 -10063 10064" universe="10004" />
+    <cell id="10221" material="10003" name="water" region="10002 10049 -10050 -10064 10065" universe="10004" />
+    <cell id="10222" material="10003" name="water" region="10002 10050 -10051 -10064 10065" universe="10004" />
+    <cell id="10223" material="10003" name="water" region="10002 10051 -10052 -10064 10065" universe="10004" />
+    <cell id="10224" material="10003" name="water" region="10002 10052 -10053 -10064 10065" universe="10004" />
+    <cell id="10225" material="10003" name="water" region="10002 10053 -10054 -10064 10065" universe="10004" />
+    <cell id="10226" material="10003" name="water" region="10002 10054 -10055 -10064 10065" universe="10004" />
+    <cell id="10227" material="10003" name="water" region="10002 10055 -10056 -10064 10065" universe="10004" />
+    <cell id="10228" material="10003" name="water" region="10002 10056 -10049 -10064 10065" universe="10004" />
+    <cell id="10229" material="10003" name="water" region="10002 10049 -10050 -10065 10066" universe="10004" />
+    <cell id="10230" material="10003" name="water" region="10002 10050 -10051 -10065 10066" universe="10004" />
+    <cell id="10231" material="10003" name="water" region="10002 10051 -10052 -10065 10066" universe="10004" />
+    <cell id="10232" material="10003" name="water" region="10002 10052 -10053 -10065 10066" universe="10004" />
+    <cell id="10233" material="10003" name="water" region="10002 10053 -10054 -10065 10066" universe="10004" />
+    <cell id="10234" material="10003" name="water" region="10002 10054 -10055 -10065 10066" universe="10004" />
+    <cell id="10235" material="10003" name="water" region="10002 10055 -10056 -10065 10066" universe="10004" />
+    <cell id="10236" material="10003" name="water" region="10002 10056 -10049 -10065 10066" universe="10004" />
+    <cell id="10237" material="10003" name="water" region="10002 10049 -10050 -10066 10067" universe="10004" />
+    <cell id="10238" material="10003" name="water" region="10002 10050 -10051 -10066 10067" universe="10004" />
+    <cell id="10239" material="10003" name="water" region="10002 10051 -10052 -10066 10067" universe="10004" />
+    <cell id="10240" material="10003" name="water" region="10002 10052 -10053 -10066 10067" universe="10004" />
+    <cell id="10241" material="10003" name="water" region="10002 10053 -10054 -10066 10067" universe="10004" />
+    <cell id="10242" material="10003" name="water" region="10002 10054 -10055 -10066 10067" universe="10004" />
+    <cell id="10243" material="10003" name="water" region="10002 10055 -10056 -10066 10067" universe="10004" />
+    <cell id="10244" material="10003" name="water" region="10002 10056 -10049 -10066 10067" universe="10004" />
+    <cell id="10245" material="10003" name="water" region="10002 10049 -10050 -10067 10068" universe="10004" />
+    <cell id="10246" material="10003" name="water" region="10002 10050 -10051 -10067 10068" universe="10004" />
+    <cell id="10247" material="10003" name="water" region="10002 10051 -10052 -10067 10068" universe="10004" />
+    <cell id="10248" material="10003" name="water" region="10002 10052 -10053 -10067 10068" universe="10004" />
+    <cell id="10249" material="10003" name="water" region="10002 10053 -10054 -10067 10068" universe="10004" />
+    <cell id="10250" material="10003" name="water" region="10002 10054 -10055 -10067 10068" universe="10004" />
+    <cell id="10251" material="10003" name="water" region="10002 10055 -10056 -10067 10068" universe="10004" />
+    <cell id="10252" material="10003" name="water" region="10002 10056 -10049 -10067 10068" universe="10004" />
+    <cell id="10253" material="10003" name="water" region="10002 10049 -10050 -10068 10069" universe="10004" />
+    <cell id="10254" material="10003" name="water" region="10002 10050 -10051 -10068 10069" universe="10004" />
+    <cell id="10255" material="10003" name="water" region="10002 10051 -10052 -10068 10069" universe="10004" />
+    <cell id="10256" material="10003" name="water" region="10002 10052 -10053 -10068 10069" universe="10004" />
+    <cell id="10257" material="10003" name="water" region="10002 10053 -10054 -10068 10069" universe="10004" />
+    <cell id="10258" material="10003" name="water" region="10002 10054 -10055 -10068 10069" universe="10004" />
+    <cell id="10259" material="10003" name="water" region="10002 10055 -10056 -10068 10069" universe="10004" />
+    <cell id="10260" material="10003" name="water" region="10002 10056 -10049 -10068 10069" universe="10004" />
+    <cell id="10261" material="10003" name="water" region="10002 10049 -10050 -10069 10070" universe="10004" />
+    <cell id="10262" material="10003" name="water" region="10002 10050 -10051 -10069 10070" universe="10004" />
+    <cell id="10263" material="10003" name="water" region="10002 10051 -10052 -10069 10070" universe="10004" />
+    <cell id="10264" material="10003" name="water" region="10002 10052 -10053 -10069 10070" universe="10004" />
+    <cell id="10265" material="10003" name="water" region="10002 10053 -10054 -10069 10070" universe="10004" />
+    <cell id="10266" material="10003" name="water" region="10002 10054 -10055 -10069 10070" universe="10004" />
+    <cell id="10267" material="10003" name="water" region="10002 10055 -10056 -10069 10070" universe="10004" />
+    <cell id="10268" material="10003" name="water" region="10002 10056 -10049 -10069 10070" universe="10004" />
+    <cell id="10269" material="10003" name="water" region="10002 10049 -10050 -10070 10071" universe="10004" />
+    <cell id="10270" material="10003" name="water" region="10002 10050 -10051 -10070 10071" universe="10004" />
+    <cell id="10271" material="10003" name="water" region="10002 10051 -10052 -10070 10071" universe="10004" />
+    <cell id="10272" material="10003" name="water" region="10002 10052 -10053 -10070 10071" universe="10004" />
+    <cell id="10273" material="10003" name="water" region="10002 10053 -10054 -10070 10071" universe="10004" />
+    <cell id="10274" material="10003" name="water" region="10002 10054 -10055 -10070 10071" universe="10004" />
+    <cell id="10275" material="10003" name="water" region="10002 10055 -10056 -10070 10071" universe="10004" />
+    <cell id="10276" material="10003" name="water" region="10002 10056 -10049 -10070 10071" universe="10004" />
+    <cell id="10277" material="10003" name="water" region="10002 10049 -10050 -10071 10072" universe="10004" />
+    <cell id="10278" material="10003" name="water" region="10002 10050 -10051 -10071 10072" universe="10004" />
+    <cell id="10279" material="10003" name="water" region="10002 10051 -10052 -10071 10072" universe="10004" />
+    <cell id="10280" material="10003" name="water" region="10002 10052 -10053 -10071 10072" universe="10004" />
+    <cell id="10281" material="10003" name="water" region="10002 10053 -10054 -10071 10072" universe="10004" />
+    <cell id="10282" material="10003" name="water" region="10002 10054 -10055 -10071 10072" universe="10004" />
+    <cell id="10283" material="10003" name="water" region="10002 10055 -10056 -10071 10072" universe="10004" />
+    <cell id="10284" material="10003" name="water" region="10002 10056 -10049 -10071 10072" universe="10004" />
+    <cell id="10285" material="10003" name="water" region="10002 10049 -10050 -10072" universe="10004" />
+    <cell id="10286" material="10003" name="water" region="10002 10050 -10051 -10072" universe="10004" />
+    <cell id="10287" material="10003" name="water" region="10002 10051 -10052 -10072" universe="10004" />
+    <cell id="10288" material="10003" name="water" region="10002 10052 -10053 -10072" universe="10004" />
+    <cell id="10289" material="10003" name="water" region="10002 10053 -10054 -10072" universe="10004" />
+    <cell id="10290" material="10003" name="water" region="10002 10054 -10055 -10072" universe="10004" />
+    <cell id="10291" material="10003" name="water" region="10002 10055 -10056 -10072" universe="10004" />
+    <cell id="10292" material="10003" name="water" region="10002 10056 -10049 -10072" universe="10004" />
+    <surface coeffs="0.0 0.0 0.39218" id="10000" name="Fuel OR" type="z-cylinder" />
+    <surface coeffs="0.0 0.0 0.40005" id="10001" name="Clad IR" type="z-cylinder" />
+    <surface coeffs="0.0 0.0 0.4572" id="10002" name="Clad OR" type="z-cylinder" />
+    <surface boundary="reflective" coeffs="-0.62992" id="10003" name="min x" type="x-plane" />
+    <surface boundary="reflective" coeffs="0.62992" id="10004" name="max x" type="x-plane" />
+    <surface boundary="reflective" coeffs="-0.62992" id="10005" name="min y" type="y-plane" />
+    <surface boundary="reflective" coeffs="0.62992" id="10006" name="max y" type="y-plane" />
+    <surface boundary="reflective" coeffs="-0.62992" id="10007" name="min z" type="z-plane" />
+    <surface boundary="reflective" coeffs="0.62992" id="10008" name="max z" type="z-plane" />
+    <surface coeffs="0.7071067811865476 0.7071067811865475 0.0 0.0" id="10009" type="plane" />
+    <surface coeffs="6.123233995736766e-17 1.0 0.0 0.0" id="10010" type="plane" />
+    <surface coeffs="-0.7071067811865475 0.7071067811865476 0.0 0.0" id="10011" type="plane" />
+    <surface coeffs="-1.0 1.2246467991473532e-16 0.0 0.0" id="10012" type="plane" />
+    <surface coeffs="-0.7071067811865477 -0.7071067811865475 0.0 0.0" id="10013" type="plane" />
+    <surface coeffs="-1.8369701987210297e-16 -1.0 0.0 0.0" id="10014" type="plane" />
+    <surface coeffs="0.7071067811865474 -0.7071067811865477 0.0 0.0" id="10015" type="plane" />
+    <surface coeffs="1.0 -2.4492935982947064e-16 0.0 0.0" id="10016" type="plane" />
+    <surface coeffs="0.0 0.0 0.39218" id="10017" type="z-cylinder" />
+    <surface coeffs="0.0 0.0 0.37972665217890617" id="10018" type="z-cylinder" />
+    <surface coeffs="0.0 0.0 0.3668507984862511" id="10019" type="z-cylinder" />
+    <surface coeffs="0.0 0.0 0.35350627480286684" id="10020" type="z-cylinder" />
+    <surface coeffs="0.0 0.0 0.33963784285618115" id="10021" type="z-cylinder" />
+    <surface coeffs="0.0 0.0 0.3251784775703952" id="10022" type="z-cylinder" />
+    <surface coeffs="0.0 0.0 0.31004551319120877" id="10023" type="z-cylinder" />
+    <surface coeffs="0.0 0.0 0.29413500000000004" id="10024" type="z-cylinder" />
+    <surface coeffs="0.0 0.0 0.27731313744574027" id="10025" type="z-cylinder" />
+    <surface coeffs="0.0 0.0 0.2594026872933278" id="10026" type="z-cylinder" />
+    <surface coeffs="0.0 0.0 0.24016022183117675" id="10027" type="z-cylinder" />
+    <surface coeffs="0.0 0.0 0.21923528485396696" id="10028" type="z-cylinder" />
+    <surface coeffs="0.0 0.0 0.1960900000000001" id="10029" type="z-cylinder" />
+    <surface coeffs="0.0 0.0 0.16981892142809069" id="10030" type="z-cylinder" />
+    <surface coeffs="0.0 0.0 0.13865656872287024" id="10031" type="z-cylinder" />
+    <surface coeffs="0.0 0.0 0.0980450000000002" id="10032" type="z-cylinder" />
+    <surface coeffs="0.7071067811865476 0.7071067811865475 0.0 0.0" id="10033" type="plane" />
+    <surface coeffs="6.123233995736766e-17 1.0 0.0 0.0" id="10034" type="plane" />
+    <surface coeffs="-0.7071067811865475 0.7071067811865476 0.0 0.0" id="10035" type="plane" />
+    <surface coeffs="-1.0 1.2246467991473532e-16 0.0 0.0" id="10036" type="plane" />
+    <surface coeffs="-0.7071067811865477 -0.7071067811865475 0.0 0.0" id="10037" type="plane" />
+    <surface coeffs="-1.8369701987210297e-16 -1.0 0.0 0.0" id="10038" type="plane" />
+    <surface coeffs="0.7071067811865474 -0.7071067811865477 0.0 0.0" id="10039" type="plane" />
+    <surface coeffs="1.0 -2.4492935982947064e-16 0.0 0.0" id="10040" type="plane" />
+    <surface coeffs="0.7071067811865476 0.7071067811865475 0.0 0.0" id="10041" type="plane" />
+    <surface coeffs="6.123233995736766e-17 1.0 0.0 0.0" id="10042" type="plane" />
+    <surface coeffs="-0.7071067811865475 0.7071067811865476 0.0 0.0" id="10043" type="plane" />
+    <surface coeffs="-1.0 1.2246467991473532e-16 0.0 0.0" id="10044" type="plane" />
+    <surface coeffs="-0.7071067811865477 -0.7071067811865475 0.0 0.0" id="10045" type="plane" />
+    <surface coeffs="-1.8369701987210297e-16 -1.0 0.0 0.0" id="10046" type="plane" />
+    <surface coeffs="0.7071067811865474 -0.7071067811865477 0.0 0.0" id="10047" type="plane" />
+    <surface coeffs="1.0 -2.4492935982947064e-16 0.0 0.0" id="10048" type="plane" />
+    <surface coeffs="0.7071067811865476 0.7071067811865475 0.0 0.0" id="10049" type="plane" />
+    <surface coeffs="6.123233995736766e-17 1.0 0.0 0.0" id="10050" type="plane" />
+    <surface coeffs="-0.7071067811865475 0.7071067811865476 0.0 0.0" id="10051" type="plane" />
+    <surface coeffs="-1.0 1.2246467991473532e-16 0.0 0.0" id="10052" type="plane" />
+    <surface coeffs="-0.7071067811865477 -0.7071067811865475 0.0 0.0" id="10053" type="plane" />
+    <surface coeffs="-1.8369701987210297e-16 -1.0 0.0 0.0" id="10054" type="plane" />
+    <surface coeffs="0.7071067811865474 -0.7071067811865477 0.0 0.0" id="10055" type="plane" />
+    <surface coeffs="1.0 -2.4492935982947064e-16 0.0 0.0" id="10056" type="plane" />
+    <surface coeffs="0.0 0.0 0.8637388192594313" id="10058" type="z-cylinder" />
+    <surface coeffs="0.0 0.0 0.8366362313088025" id="10059" type="z-cylinder" />
+    <surface coeffs="0.0 0.0 0.8095336433581737" id="10060" type="z-cylinder" />
+    <surface coeffs="0.0 0.0 0.7824310554075449" id="10061" type="z-cylinder" />
+    <surface coeffs="0.0 0.0 0.7553284674569161" id="10062" type="z-cylinder" />
+    <surface coeffs="0.0 0.0 0.7282258795062873" id="10063" type="z-cylinder" />
+    <surface coeffs="0.0 0.0 0.7011232915556584" id="10064" type="z-cylinder" />
+    <surface coeffs="0.0 0.0 0.6740207036050296" id="10065" type="z-cylinder" />
+    <surface coeffs="0.0 0.0 0.6469181156544008" id="10066" type="z-cylinder" />
+    <surface coeffs="0.0 0.0 0.619815527703772" id="10067" type="z-cylinder" />
+    <surface coeffs="0.0 0.0 0.5927129397531432" id="10068" type="z-cylinder" />
+    <surface coeffs="0.0 0.0 0.5656103518025144" id="10069" type="z-cylinder" />
+    <surface coeffs="0.0 0.0 0.5385077638518856" id="10070" type="z-cylinder" />
+    <surface coeffs="0.0 0.0 0.5114051759012568" id="10071" type="z-cylinder" />
+    <surface coeffs="0.0 0.0 0.484302587950628" id="10072" type="z-cylinder" />
+</geometry>

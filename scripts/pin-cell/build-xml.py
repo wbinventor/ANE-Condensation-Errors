@@ -92,6 +92,23 @@ root_univ.add_cell(root_cell)
 geometry = openmc.Geometry()
 geometry.root_universe = root_univ
 
+# Mesh the fuel and water with rings
+openmoc_geometry = \
+    openmc.openmoc_compatible.get_openmoc_geometry(geometry)
+all_cells = openmoc_geometry.getAllMaterialCells()
+all_cells[fuel.id].setNumRings(16)
+all_cells[water.id].setNumRings(16)
+
+# FIXME
+all_cells[water.id].setNumSectors(8)
+all_cells[fuel.id].setNumSectors(8)
+all_cells[clad.id].setNumSectors(8)
+all_cells[gap.id].setNumSectors(8)
+
+openmoc_geometry.subdivideCells()
+openmc_geometry = \
+    openmc.openmoc_compatible.get_openmc_geometry(openmoc_geometry)
+
 
 ###################   Exporting to OpenMC settings.xml File  ###################
 
@@ -121,55 +138,35 @@ plots_file = openmc.Plots([plot])
 ######################   Move Files into Directories  #########################
 
 scattering = ['anisotropic', 'iso-in-lab']
-num_rings = [16]
 
 for scatter in scattering:
     print(scatter)
-    for rings in num_rings:
-        print('# rings: {}'.format(rings))
 
-        if scatter == 'iso-in-lab':
-            materials_file.make_isotropic_in_lab()
-        materials_file.export_to_xml()
+    if scatter == 'iso-in-lab':
+        materials_file.make_isotropic_in_lab()
 
-        # Mesh the fuel and water with rings
-        openmoc_geometry = \
-            openmc.openmoc_compatible.get_openmoc_geometry(geometry)
-        all_cells = openmoc_geometry.getAllMaterialCells()
-        all_cells[fuel.id].setNumRings(rings)
-        all_cells[water.id].setNumRings(rings)
+    materials_file.export_to_xml()
+    openmc_geometry.export_to_xml()
+    settings_file.export_to_xml()
+    plots_file.export_to_xml()
 
-        # FIXME
-        all_cells[water.id].setNumSectors(8)
-        all_cells[fuel.id].setNumSectors(8)
-        all_cells[clad.id].setNumSectors(8)
-        all_cells[gap.id].setNumSectors(8)
+    # Initialize a fine (70-) group MGXS Library for OpenMOC
+    mgxs_lib = openmc.mgxs.Library(openmc_geometry, by_nuclide=True)
+    mgxs_lib.energy_groups = group_structures['CASMO']['70-group']
+    mgxs_lib.mgxs_types = ['total', 'nu-fission',
+                           'consistent nu-scatter matrix', 'chi',
+                           'fission', 'capture', 'absorption']
+    mgxs_lib.correction = None
+    mgxs_lib.domain_type = 'cell'
+    mgxs_lib.build_library()
 
-        openmoc_geometry.subdivideCells()
-        openmc_geometry = \
-            openmc.openmoc_compatible.get_openmc_geometry(openmoc_geometry)
-        openmc_geometry.export_to_xml()
+    # Create a "tallies.xml" file for the MGXS Library
+    tallies_file = openmc.Tallies()
+    mgxs_lib.add_to_tallies_file(tallies_file, merge=True)
+    tallies_file.export_to_xml()
 
-        settings_file.export_to_xml()
-        plots_file.export_to_xml()
-
-        # Initialize a fine (70-) group MGXS Library for OpenMOC
-        mgxs_lib = openmc.mgxs.Library(openmc_geometry, by_nuclide=True)
-        mgxs_lib.energy_groups = group_structures['CASMO']['70-group']
-        mgxs_lib.mgxs_types = ['total', 'nu-fission',
-                               'consistent nu-scatter matrix', 'chi',
-                               'fission', 'capture', 'absorption']
-        mgxs_lib.correction = None
-        mgxs_lib.domain_type = 'cell'
-        mgxs_lib.build_library()
-
-        # Create a "tallies.xml" file for the MGXS Library
-        tallies_file = openmc.Tallies()
-        mgxs_lib.add_to_tallies_file(tallies_file, merge=True)
-        tallies_file.export_to_xml()
-
-        # Move files
-        for xml_file in glob.glob('*.xml'):
-            if not os.path.exists('{}/{}x'.format(scatter, rings)):
-                os.makedirs('{}/{}x'.format(scatter, rings))
-            os.rename(xml_file, '{}/{}x/{}'.format(scatter, rings, xml_file))
+    # Move files
+    for xml_file in glob.glob('*.xml'):
+        if not os.path.exists('{}'.format(scatter)):
+            os.makedirs('{}'.format(scatter))
+        os.rename(xml_file, '{}/{}'.format(scatter, xml_file))
