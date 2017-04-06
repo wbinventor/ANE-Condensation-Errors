@@ -29,14 +29,7 @@ Q(\mathbf{r},\mathbf{\Omega},E) = \frac{1}{4\pi} \frac{\Sigma_{p}(\mathbf{r})}{E
 \subsubsection{Simulation Tools}
 \label{subsubsec:sim-tools-case1}
 
-A reference continuous energy flux was computed for the first test case by solving Eqn.~\ref{eqn:transport-eqn-mg-separate} for each energy point {\color{red}[using a toy MOC code? Spatial and angular discretization?]}. The reference reaction rates in each region were obtained by integrating the flux multiplied by a cross section over an energy range of interest and over the volume of the fuel pin. The total cross section was collapsed using the reference flux according to Eqn.~\ref{eqn:sigt-mg-scalar}, and the source was collapsed as follows:
-
-\begin{dmath}
-\label{eqn:test1-source-mg}
-Q_{g}(\mathbf{r},\mathbf{\Omega}) = \int\displaylimits_{E_{g}}^{E_{g-1}} Q(\mathbf{r},\mathbf{\Omega},E)\mathrm{d}E
-\end{dmath}
-
-Eqn.~\ref{eqn:transport-eqn-mg-separate} was solved using {\color{red}[using a toy MOC code? Spatial and angular discretization?]} the collapsed total cross section and source. The collapsed reaction rate was obtained by volume-integrating the multi-group flux multiplied by the multi-group cross section over the fuel pin. Finally, the reaction rates obtained from the multi-group and reference calculations were compared in each energy group to identify any bias due to the flux separability approximation.
+A reference continuous energy flux was computed for the first test case by solving Eqn.~\ref{eqn:transport-eqn-mg-separate} for each energy point {\color{red}[using a toy MOC code? Spatial and angular discretization?]}. The reference reaction rates in each region were obtained by integrating the flux multiplied by a cross section over an energy range of interest and over the volume of the fuel pin. The total cross section and souce were collapsed using the reference flux according to Eqns.~\ref{eqn:sigt-mg-scalar} and~\ref{eqn:groupwise-source}, respectively. Eqn.~\ref{eqn:transport-eqn-mg-separate} was solved using {\color{red}[using a toy MOC code? Spatial and angular discretization?]} the collapsed total cross section and source. The collapsed reaction rate was obtained by volume-integrating the multi-group flux multiplied by the multi-group cross section over the fuel pin. Finally, the reaction rates obtained from the multi-group and reference calculations were compared in each energy group to identify any bias due to the flux separability approximation.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

@@ -21,11 +21,16 @@ Monte Carlo methods typically employ a continuous energy representation for the 
 \mathbf{\Omega} \cdot \nabla \psi_{g}(\mathbf{r},\mathbf{\Omega}) + \Sigma_{t,g}(\mathbf{r},\mathbf{\Omega})\psi_{g}(\mathbf{r},\mathbf{\Omega}) = Q_{g}(\mathbf{r},\mathbf{\Omega})
 \end{dmath}
 
-\noindent where the group-wise angular flux $\psi_{g}(\mathbf{r},\mathbf{\Omega})$ is integrated across energy group $g$:
+\noindent where the group-wise angular flux $\psi_{g}(\mathbf{r},\mathbf{\Omega})$ and source $Q_{g}(\mathbf{r},\mathbf{\Omega})$ are integrated across each energy group $g$:
 
 \begin{dmath}
 \label{eqn:groupwise-flux}
 \psi_{g}(\mathbf{r},\mathbf{\Omega}) = \int\displaylimits_{E_{g}}^{E_{g-1}} \psi(\mathbf{r},\mathbf{\Omega},E)\mathrm{d}E
+\end{dmath}
+
+\begin{dmath}
+\label{eqn:groupwise-source}
+Q_{g}(\mathbf{r},\mathbf{\Omega}) = \int\displaylimits_{E_{g}}^{E_{g-1}} Q(\mathbf{r},\mathbf{\Omega},E)\mathrm{d}E
 \end{dmath}
 
 %\frac{1}{4\pi}\sum_{g'=1}^{G} \Sigma_{s,g' \rightarrow g}(\mathbf{r}) \phi_{g'}(\mathbf{r}) + \frac{1}{4\pi k_{eff}}\sum_{g'=1}^{G} \nu\Sigma_{f,g' \rightarrow g}(\mathbf{r})\phi_{g'}(\mathbf{r})
