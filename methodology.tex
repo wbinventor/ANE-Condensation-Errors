@@ -19,8 +19,8 @@ first paragraph: outline section
 
 first paragraph: outline section
 -describe objective of this test case: to understand the impact of the flux separability 
--~\autoref{subsubsec:benchmark-case1} describes the be
--~\autoref{subsubsec:sim-tools-case1}
+-~\autoref{subsubsec:benchmark-case1} describes the benchmark problem
+-~\autoref{subsubsec:sim-tools-case1} describes the simulation tools used
 -cite nate's thesis~\cite{gibson2016thesis}
 -this test case shows that reaction rates are not preserved in resonance groups
   -even when the MGXS is collapsed with the ``true'' reference scalar flux
@@ -29,7 +29,7 @@ first paragraph: outline section
 \subsubsection{Benchmark Problem}
 \label{subsubsec:benchmark-case1}
 
-The first test case modeled a very simple problem in which the reference flux could be computed precisely to demonstrate the existence of errors from approximately collapsing Eqn.~\ref{eqn:transport-eqn-ce} into Eqn.~\ref{eqn:transport-eqn-mg-separate} with the flux separability approximation. The first test case problem consisted of a unit cell of an infinite array of unclad fuel pins. The fuel material contained U-238 with an atom density of 0.022 $\nicefrac{\text{a}}{\text{b-cm}}$ and a purely scattering nuclide with a constant cross section of 0.176 cm\textsuperscript{-1}, an analog to oxygen in UO\textsubscript{2}. The moderator was a pure scatterer with a constant cross section of 1.23 cm\textsuperscript{-1}. The pin radius is 0.4 cm and the pitch was 1.26 cm. The source was given by the scatter source from the narrow resonance approximation:
+The first test case modeled a simple benchmark problem in which the reference flux could be computed precisely to demonstrate the existence of errors from approximately collapsing Eqn.~\ref{eqn:transport-eqn-ce} into Eqn.~\ref{eqn:transport-eqn-mg-separate} with the flux separability approximation. The first test case problem consisted of a unit cell of an infinite array of unclad fuel pins. The fuel material contained U-238 with an atom density of 0.022 $\nicefrac{\text{a}}{\text{b-cm}}$ and a purely scattering nuclide with a constant cross section of 0.176 cm\textsuperscript{-1}, an analog to oxygen in UO\textsubscript{2}. The moderator was a pure scatterer with a constant cross section of 1.23 cm\textsuperscript{-1}. The pin radius is 0.4 cm and the pitch was 1.26 cm. The source was given by the scatter source from the narrow resonance approximation:
 
 \begin{dmath}
 \label{eqn:test-source-ce}
@@ -51,31 +51,28 @@ Q_{g}(\mathbf{r},\mathbf{\Omega}) = \int\displaylimits_{E_{g}}^{E_{g-1}} Q(\math
 
 Eqn.~\ref{eqn:transport-eqn-mg-separate} was solved using {\color{red}[using a toy MOC code? Spatial and angular discretization?]} the collapsed total cross section and source. The collapsed reaction rate was obtained by volume-integrating the multi-group flux multiplied by the multi-group cross section over the fuel pin. Finally, the reaction rates obtained from the multi-group and reference calculations were compared in each energy group to identify any bias due to the flux separability approximation.
 
-%-toy MOC/CPM (?) code used to generate an ultra-fine reference flux
-%-the reference ultra-fine flux is used to compute (1) reference single-group reaction rate and (2) a single-group MGXS for the resonance
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Test Case 2: A Critical PWR Fuel Pin}
 \label{subsec:test-case2}
 
+first paragraph: outline section
+-describe objective of this test case: to understand impact on flux separability approximation on eigenvalue calculations of LWRs
+-~\autoref{subsubsec:benchmark-case2} describes the benchmark problem
+-~\autoref{subsubsec:sim-tools-case2} describes the simulations tools used
 -cite my thesis~\cite{boyd2016thesis}
-
+-this test case shows that the flux separability approximation induces a biased eigenvalue
+  -magnitude of bias depends on the number of energy groups used
+  -reaction rates are not preserved in resonance groups
+  -even when the MGXS is collapsed with the ``true'' reference scalar flux
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Benchmark Problem}
 \label{subsubsec:benchmark-case2}
 
-first paragraph: a PWR fuel pin
--cite BEAVRS~\cite{horelik2013beavrs}
--fully-detailed four-region PWR fuel pin as shown in Fig.~\ref{fig:pin-materials}
-  -1.6\% enriched UO$_2$ fuel, helium gap, zircaloy glad and light water moderator
--geometry was discretized into radial rings and sectors in Fig.~\ref{fig:pin-fsrs}
-  -for both MGXS generation and multi-group eigenvalue calculations
+The second test case modeled a four-region PWR fuel pin, including  2.4\% UO\textsubscript{2} fuel, helium gap, zircaloy clad and borated light water moderator. This benchmark was derived from the BEAVRS PWR model and the material specifications are detailed by~\cite{horelik2013beavrs}. The geometric specifications are reproduced in~\autoref{table:pin-dimensions}. The benchmark geometry is illustrated in~\autoref{fig:pin-materials}. The fuel and moderator were each discretized into sixteen radial zones for spatial homogenization\footnote{Equal volume radial rings were used in the fuel; equally spaced radial rings were used in the moderator.} as shown in~\autoref{fig:pin-fsrs} for which unique MGXS were generated and employed in multi-group transport calculations.
 
--need to update figure with 16 rings in the fuel
-  -match the plot of flux error by fuel FSR
-
-\begin{table}[H]
+\begin{table}[h!]
   \centering
   \caption{2D fuel pin dimensions.}
   \label{table:pin-dimensions} 
@@ -101,11 +98,11 @@ first paragraph: a PWR fuel pin
 \end{subfigure}%
 \begin{subfigure}{.25\textwidth}
   \centering
-  \includegraphics[width=0.9\linewidth]{figures/pin-cell-16x8}
+  \includegraphics[width=0.9\linewidth]{figures/pin-cell-16x1}
   \caption{}
   \label{fig:pin-fsrs}
 \end{subfigure}
-\caption{A PWR fuel pin cell materials (a) and FSRs (b).}
+\caption{The PWR fuel pin cell materials (a) and MGXS spatial homogenization zones (b) for the second test case benchmark.}
 \label{fig:pin-cell}
 \end{figure}
 
