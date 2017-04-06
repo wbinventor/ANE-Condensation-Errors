@@ -9,8 +9,8 @@ import numpy as np
 
 import openmc.mgxs
 import openmoc
-from openmoc.openmoc_compatible import get_openmoc_geometry
-from infermc.energy_groups import group_structures
+from openmc.openmoc_compatible import get_openmoc_geometry
+from energy_groups import group_structures
 
 
 def get_fluxes(solver, mgxs_lib):
@@ -107,11 +107,9 @@ for i, num_groups in enumerate(groups):
     openmoc.materialize.load_openmc_mgxs_lib(condense_lib, openmoc_geometry)
 
     # Discretize the geometry into angular sectors
-    '''
     cells = openmoc_geometry.getAllMaterialCells()
     for cell_id, cell in cells.items():
         cell.setNumSectors(8)
-    '''
 
     # Generate tracks
     track_generator = openmoc.TrackGenerator(openmoc_geometry, 512, 0.001)

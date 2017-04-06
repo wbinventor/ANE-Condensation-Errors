@@ -13,7 +13,7 @@ import seaborn as sns
 import openmc.mgxs
 import openmc.openmoc_compatible
 import openmoc
-from infermc.energy_groups import group_structures
+from energy_groups import group_structures
 import pyne.ace
 
 # Force non-interactive mode for plotting on clusters

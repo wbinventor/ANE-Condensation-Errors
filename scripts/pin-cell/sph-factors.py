@@ -7,15 +7,15 @@ import numpy as np
 
 import openmc.mgxs
 import openmoc
-from openmoc.openmoc_compatible import get_openmoc_geometry
-from infermc.energy_groups import group_structures
+from openmc.openmoc_compatible import get_openmoc_geometry
+from energy_groups import group_structures
 
 opts = openmoc.options.Options()
 
 groups = [1, 2, 4, 8, 16, 25, 40, 70]
-scatter = 'iso-in-lab'
-keffs = np.zeros((2, len(groups), dtype=np.float)
-biases = np.zeros((2, len(groups), dtype=np.float)
+scatter = 'anisotropic' # 'iso-in-lab'
+keffs = np.zeros((2, len(groups)), dtype=np.float)
+biases = np.zeros((2, len(groups)), dtype=np.float)
 
 
 ###############################################################################
@@ -40,11 +40,9 @@ for j, num_groups in enumerate(groups):
     openmoc.materialize.load_openmc_mgxs_lib(condense_lib, openmoc_geometry)
 
     # Discretize the geometry
-    '''
     cells = openmoc_geometry.getAllMaterialCells()
     for cell_id, cell in cells.items():
         cell.setNumSectors(8)
-    '''
 
     # Generate tracks
     track_generator = openmoc.TrackGenerator(openmoc_geometry, 128, 0.01)

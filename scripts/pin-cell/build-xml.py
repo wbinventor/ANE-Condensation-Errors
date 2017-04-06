@@ -100,10 +100,10 @@ all_cells[fuel.id].setNumRings(16)
 all_cells[water.id].setNumRings(16)
 
 # FIXME
-all_cells[water.id].setNumSectors(8)
-all_cells[fuel.id].setNumSectors(8)
-all_cells[clad.id].setNumSectors(8)
-all_cells[gap.id].setNumSectors(8)
+#all_cells[water.id].setNumSectors(8)
+#all_cells[fuel.id].setNumSectors(8)
+#all_cells[clad.id].setNumSectors(8)
+#all_cells[gap.id].setNumSectors(8)
 
 openmoc_geometry.subdivideCells()
 openmc_geometry = \
@@ -122,7 +122,7 @@ source.space.only_fissionable = True
 settings_file = openmc.Settings()
 settings_file.batches = 100
 settings_file.inactive = 10
-settings_file.particles = 10000000
+settings_file.particles = 1000000
 settings_file.output = {'tallies': False}
 settings_file.source = source
 settings_file.sourcepoint_write = False

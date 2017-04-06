@@ -7,8 +7,8 @@ import numpy as np
 
 import openmc.mgxs
 import openmoc
-from openmoc.openmoc_compatible import get_openmoc_geometry
-from infermc.energy_groups import group_structures
+from openmc.openmoc_compatible import get_openmoc_geometry
+from energy_groups import group_structures
 
 
 openmoc.log.set_log_level('RESULT')
@@ -39,11 +39,9 @@ for i, scatter in enumerate(scattering):
         openmoc.materialize.load_openmc_mgxs_lib(condense_lib, openmoc_geometry)
 
         # Apply sector mesh
-        '''
         cells = openmoc_geometry.getAllMaterialCells()
         for cell_id, cell in cells.items():
             cell.setNumSectors(8)
-        '''
 
         # Generate tracks
         track_generator = openmoc.TrackGenerator(openmoc_geometry, 128, 0.01)

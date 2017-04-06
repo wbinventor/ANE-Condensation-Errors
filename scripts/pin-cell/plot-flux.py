@@ -22,7 +22,7 @@ import seaborn as sns
 import openmc.mgxs
 import openmc.openmoc_compatible
 import openmoc
-from infermc.energy_groups import group_structures
+from energy_groups import group_structures
 import pyne.ace
 
 # Force non-interactive mode for plotting on clusters
@@ -128,11 +128,9 @@ openmoc_materials = \
     openmoc.materialize.load_openmc_mgxs_lib(mgxs_lib, openmoc_geometry)
 
 # Discretize the geometry in angular sectors
-'''
 cells = openmoc_geometry.getAllMaterialCells()
 for cell_id, cell in cells.items():
     cell.setNumSectors(8)
-'''
 
 # Initialize an OpenMOC TrackGenerator and Solver
 track_generator = openmoc.TrackGenerator(openmoc_geometry, 512, 0.001)
