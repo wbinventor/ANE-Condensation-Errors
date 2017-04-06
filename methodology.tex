@@ -70,7 +70,7 @@ first paragraph: outline section
 \subsubsection{Benchmark Problem}
 \label{subsubsec:benchmark-case2}
 
-The second test case modeled a four-region PWR fuel pin, including  2.4\% UO\textsubscript{2} fuel, helium gap, zircaloy clad and borated light water moderator. This benchmark was derived from the BEAVRS PWR model and the material specifications are detailed by~\cite{horelik2013beavrs}. The geometric specifications are reproduced in~\autoref{table:pin-dimensions}. The benchmark geometry is illustrated in~\autoref{fig:pin-materials}. The fuel and moderator were each discretized into sixteen radial zones for spatial homogenization\footnote{Equal volume radial rings were used in the fuel; equally spaced radial rings were used in the moderator.} as shown in~\autoref{fig:pin-fsrs} for which unique MGXS were generated and employed in multi-group transport calculations.
+The second test case modeled a four-region PWR fuel pin, including  2.4\% UO\textsubscript{2} fuel, helium gap, zircaloy clad and borated light water moderator. This benchmark was derived from the BEAVRS PWR model and the material specifications are detailed by~\cite{horelik2013beavrs}. The geometric specifications are reproduced in~\autoref{table:pin-dimensions}. The benchmark geometry is illustrated in~\autoref{fig:pin-materials}. The fuel and moderator were each discretized into sixteen radial zones for spatial homogenization\footnote{Equal volume radial rings were used in the fuel; equally spaced radial rings were used in the moderator.} as shown in~\autoref{fig:pin-rings} for which unique MGXS were generated and employed in multi-group transport calculations.
 
 \begin{table}[h!]
   \centering
@@ -100,7 +100,7 @@ The second test case modeled a four-region PWR fuel pin, including  2.4\% UO\tex
   \centering
   \includegraphics[width=0.9\linewidth]{figures/pin-cell-16x1}
   \caption{}
-  \label{fig:pin-fsrs}
+  \label{fig:pin-rings}
 \end{subfigure}
 \caption{The PWR fuel pin cell materials (a) and MGXS spatial homogenization zones (b) for the second test case benchmark.}
 \label{fig:pin-cell}
@@ -110,16 +110,8 @@ The second test case modeled a four-region PWR fuel pin, including  2.4\% UO\tex
 \subsection{Simulation Tools}
 \label{subsubsec:sim-tools-case2}
 
-The OpenMC continuous energy Monte Carlo code~\citep{romano2013openmc} was employed to generate multi-group cross sections, and reference multi-group reaction rates and fluxes, for the second test case. The \texttt{openmc.mgxs} Python module was used to tally multi-group cross sections in CASMO's seventy energy group structure~\citep{rhodes2006casmo} for each of the radial spatial zones illustrated in Fig.~\ref{fig:pin-fsrs} from a single eigenvalue calculation. The MGXS were tallied using the scalar flux (Eqn.~\ref{eqn:sigt-mg-scalar}) according to the flux separability approximation. The same Monte Carlo simulation was used to compute a reference eigenvalue, as well as reference multi-group fluxes and reaction rates for each energy group and spatial region. A total of 10 active and 100 inactive batches of 10\textsuperscript{6} particles per batch were simulated. 
+The OpenMC continuous energy Monte Carlo code~\citep{romano2013openmc} was employed to generate multi-group cross sections, and reference multi-group reaction rates and fluxes, for the second test case. The \texttt{openmc.mgxs} Python module was used to tally multi-group cross sections in CASMO's seventy energy group structure~\citep{rhodes2006casmo} for each of the radial spatial zones illustrated in Fig.~\ref{fig:pin-rings} from a single eigenvalue calculation. The MGXS were tallied using the scalar flux (Eqn.~\ref{eqn:sigt-mg-scalar}) according to the flux separability approximation. The same Monte Carlo simulation was used to compute a reference eigenvalue, as well as reference multi-group fluxes and reaction rates for each energy group and spatial region. A total of 10 active and 100 inactive batches of 10\textsuperscript{6} particles per batch were simulated. 
 
-It should be noted that two different OpenMC simulations were performed with different scattering kernels. The first simulation employed all of the normal scattering physics modeled in OpenMC. The second simulation used OpenMC's ``iso-in-lab'' feature\footnote{The ``iso-in-lab'' feature samples the outgoing neutron energy from the scattering laws prescribed by the continuous energy cross section library, but the outgoing neutron direction of motion is sampled from an isotropic in lab distribution.} to enforce isotropic in lab scattering. Although isotropic scattering is generally not a valid approximation for nuclear reactors, the ``iso-in-lab'' feature enabled comparisons between the reference eigenvalues and reaction rates produced by OpenMC and those computed from isotropic multi-group calculations with OpenMOC. Furthmore, the separate calculations enabled a comparison of the approximation errors due to isotropic in lab scattering and the flux separability approximation.
+The OpenMOC multi-group code~\citep{boyd2014openmoc} was employed to model the second test case benchmark using the MGXS generated by OpenMC. The OpenMOC code is a 2D deterministic method of characteristics code designed for fixed source and eigenvalue neutron transport calculations. The benchmark geometry illustrated in Fig.~\ref{fig:pin-rings} was further discretized for OpenMOC's transport solver with eight azimuthal sectors within each radial ring. A series of multi-group calculations were performed with OpenMOC using the 70-group MGXS tabulated by OpenMC and subsequently collapsed into 1, 2, 8, 16, 25, 40 coarse energy groups. Finally, the OpenMOC eigenvalue and multi-group fluxes were compared with the reference solution computed by OpenMC.
 
-%The purpose of using a second, separate ``iso-in-lab'' simulation was twofold.
-
-second paragraph: OpenMOC
--cite~\cite{boyd2014openmoc}
--multi-group method of characteristics (MOC) transport code
--2D heterogeneous calculations
--uses the MGXS generated by OpenMC for the exact same benchmark geometry
-  -for various energy group structures (1 -- 70 energy groups)
--compare eigenvalues and multi-group fluxes from each calculation with reference solution
+It should be noted that two different OpenMC simulations were performed with different scattering kernels to generate two different MGXS libraries for OpenMOC. The first simulation employed all of the normal scattering physics modeled in OpenMC. The second simulation used OpenMC's ``iso-in-lab'' feature\footnote{The OpenMC ``iso-in-lab'' feature samples the outgoing neutron energy from the scattering laws prescribed by the continuous energy cross section library, but the outgoing neutron direction of motion is sampled from an isotropic in lab distribution.} to enforce isotropic in lab scattering. Although isotropic scattering is not a valid approximation for nuclear reactors, the ``iso-in-lab'' feature enabled comparisons between the reference eigenvalues and reaction rates produced by OpenMC and those computed from isotropic multi-group calculations with OpenMOC. Furthmore, the separate calculations enabled a comparison of the effects due to isotropic in lab scattering and the flux separability approximation.
