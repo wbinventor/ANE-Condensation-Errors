@@ -3,14 +3,24 @@
 \label{sec:methodology}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
--remember to hammer home that all of this is due to heterogeneous effects
+first paragraph: outline section
+-section describes code methodology employed to understand impact of flux separability approx 
+-hammer home that all of this is due to heterogeneous effects:
+  -both test cases utilize a multi-region PWR fuel pin geometry
+-a combination of analyses with ultra-fine deterministic and continuous energy Monte Carlo calculations to compute reference fluxes as well as MGXS for use and
+-start with analysis in test case 1 (in~\autoref{subsec:test-case1}) of a fake resonance cross section in a 2-region PWR fuel pin to understand impact of approx. on reaction rate preservation within a single resonance energy group
+-build up to test case 2 (in~\autoref{subsec:test-case2}) for a 4-region PWR fuel pin with multiple nuclides in to understand the global or ``compounding'' effect of the approx. across all energies in an eigenvalue calculation
+-benchmarks and simulation codes are presented for each test case
 
-%a combination of analyses with ultra-fine deterministic and continuous energy Monte Carlo calculations to compute reference fluxes as well as MGXS for use and co
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Test Case 1: Resonance with Slowing Down Source}
 \label{subsec:test-case1}
 
+first paragraph: outline section
+-describe objective of this test case: to understand the impact of the flux separability 
+-~\autoref{subsubsec:benchmark-case1} describes the be
+-~\autoref{subsubsec:sim-tools-case1}
 -cite nate's thesis~\cite{gibson2016thesis}
 -this test case shows that reaction rates are not preserved in resonance groups
   -even when the MGXS is collapsed with the ``true'' reference scalar flux
@@ -19,19 +29,30 @@
 \subsubsection{Benchmark Problem}
 \label{subsubsec:benchmark-case1}
 
--this simple test case models a two-region PWR fuel pin cell problem
--energies around a single resonance of different widths (?) and heights
+The first test case modeled a very simple problem in which the reference flux could be computed precisely to demonstrate the existence of errors from approximately collapsing Eqn.~\ref{eqn:transport-eqn-ce} into Eqn.~\ref{eqn:transport-eqn-mg-separate} with the flux separability approximation. The first test case problem consisted of a unit cell of an infinite array of unclad fuel pins. The fuel material contained U-238 with an atom density of 0.022 $\nicefrac{\text{a}}{\text{b-cm}}$ and a purely scattering nuclide with a constant cross section of 0.176 cm\textsuperscript{-1}, an analog to oxygen in UO\textsubscript{2}. The moderator was a pure scatterer with a constant cross section of 1.23 cm\textsuperscript{-1}. The pin radius is 0.4 cm and the pitch was 1.26 cm. The source was given by the scatter source from the narrow resonance approximation:
+
+\begin{dmath}
+\label{eqn:test-source-ce}
+Q(\mathbf{r},\mathbf{\Omega},E) = \frac{1}{4\pi} \frac{\Sigma_{p}(\mathbf{r})}{E}
+\end{dmath}
+
+% do you (instead) have a case where you analyze a single resonance with different peak/widths???
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Simulation Tools}
 \label{subsubsec:sim-tools-case1}
 
--toy MOC/CPM (?) code used to generate an ultra-fine reference flux
--the reference ultra-fine flux is used to compute (1) reference single-group reaction rate and (2) a single-group MGXS for the resonance
--the single-group MGXS is re-inserted into the MOC/CPM (?) code for a single-group transport calculation
--the resulting single-group reaction rate is compared to the reference
+A reference continuous energy flux was computed for the first test case by solving Eqn.~\ref{eqn:transport-eqn-mg-separate} for each energy point {\color{red}[using a toy MOC code? Spatial and angular discretization?]}. The reference reaction rates in each region were obtained by integrating the flux multiplied by a cross section over an energy range of interest and over the volume of the fuel pin. The total cross section was collapsed using the reference flux according to Eqn.~\ref{eqn:sigt-mg-scalar}, and the source was collapsed as follows:
 
+\begin{dmath}
+\label{eqn:test1-source-mg}
+Q_{g}(\mathbf{r},\mathbf{\Omega}) = \int\displaylimits_{E_{g}}^{E_{g-1}} Q(\mathbf{r},\mathbf{\Omega},E)\mathrm{d}E
+\end{dmath}
 
+Eqn.~\ref{eqn:transport-eqn-mg-separate} was solved using {\color{red}[using a toy MOC code? Spatial and angular discretization?]} the collapsed total cross section and source. The collapsed reaction rate was obtained by volume-integrating the multi-group flux multiplied by the multi-group cross section over the fuel pin. Finally, the reaction rates obtained from the multi-group and reference calculations were compared in each energy group to identify any bias due to the flux separability approximation.
+
+%-toy MOC/CPM (?) code used to generate an ultra-fine reference flux
+%-the reference ultra-fine flux is used to compute (1) reference single-group reaction rate and (2) a single-group MGXS for the resonance
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Test Case 2: A Critical PWR Fuel Pin}
