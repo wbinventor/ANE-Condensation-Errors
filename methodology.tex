@@ -3,14 +3,9 @@
 \label{sec:methodology}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-first paragraph: outline section
--section describes code methodology employed to understand impact of flux separability approx 
--hammer home that all of this is due to heterogeneous effects:
-  -both test cases utilize a multi-region PWR fuel pin geometry
--a combination of analyses with ultra-fine deterministic and continuous energy Monte Carlo calculations to compute reference fluxes as well as MGXS for use and
--start with analysis in test case 1 (in~\autoref{subsec:test-case1}) of a fake resonance cross section in a 2-region PWR fuel pin to understand impact of approx. on reaction rate preservation within a single resonance energy group
--build up to test case 2 (in~\autoref{subsec:test-case2}) for a 4-region PWR fuel pin with multiple nuclides in to understand the global or ``compounding'' effect of the approx. across all energies in an eigenvalue calculation
--benchmarks and simulation codes are presented for each test case
+Two case studies were used to disaggregate the approximation errors inherent to deterministic multi-group transport methods from the component error specific to the flux separability approximation. Ultra-fine deterministic and continuous energy Monte Carlo transport methods were used to collapse multi-group cross sections and generate reference solutions for each case study as discussed in~\autoref{subsec:test-case1} and~\autoref{subsec:test-case2}, respectively. Both case studies modeled a multi-region PWR fuel pin geometry with varying levels of complexity. The two analyses isolate the impact of the flux separability approximation on local reaction rates, as well as demonstrate the compounding effect of errors in each energy group on the $k$-eigenvalue. The following sections discuss the benchmark specifications and simulation tools used by each case study.
+
+% hammer home that all of this is due to heterogeneous effects:
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
