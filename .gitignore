@@ -1,3 +1,6 @@
+*tracks/
+*log/
+
 ## Core latex/pdflatex auxiliary files:
 *.spl
 *.pdf

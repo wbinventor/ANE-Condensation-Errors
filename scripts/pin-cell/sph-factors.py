@@ -13,7 +13,7 @@ from energy_groups import group_structures
 opts = openmoc.options.Options()
 
 groups = [1, 2, 4, 8, 16, 25, 40, 70]
-scatter = 'anisotropic' # 'iso-in-lab'
+scatter = 'iso-in-lab'
 keffs = np.zeros((2, len(groups)), dtype=np.float)
 biases = np.zeros((2, len(groups)), dtype=np.float)
 

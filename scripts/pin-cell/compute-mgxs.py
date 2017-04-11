@@ -2,10 +2,9 @@ import openmc
 import openmc.mgxs
 from energy_groups import group_structures
 
-scattering = ['anisotropic'] #, 'iso-in-lab']
+scattering = ['anisotropic', 'iso-in-lab']
 
 for scatter in scattering:
-    print(scatter)
 
     directory = '{}/'.format(scatter)
 
@@ -19,10 +18,6 @@ for scatter in scattering:
                            'consistent nu-scatter matrix', 'chi', 'fission']
     mgxs_lib.correction = None
     mgxs_lib.domain_type = 'cell'
-    print('building library')
     mgxs_lib.build_library()
-    print('loading from statepoint')
     mgxs_lib.load_from_statepoint(sp)
-    print('loaded from statepoint')
     mgxs_lib.dump_to_file(directory=directory)
-    print('what is going on')
