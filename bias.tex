@@ -1,41 +1,15 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Bias Between Continuous Energy and Multi-Group Calculations}
-\label{sec:bias}
+\section{Test Case 2}
+\label{sec:test-case2}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-first paragraph:
--this will come from chapter 5 of my thesis
-
+The second test case was designed to investigate the impact of the groupwise reaction rate errors in the context of an eigenvalue calculation for a PWR benchmark. The influence of the energy-integrated reaction rate errors on the global eigenvalue is evaluated in~\autoref{sec:case2-eigenvalue-bias}, while ~\autoref{sec:case2-flux-bias} quantifies the relationship between the bias and reaction rate errors in the energy groups with large resonant capture cross sections.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Eigenvalue Bias}
-\label{sec:bias-eigenvalues}
+\subsection{Eigenvalue Bias}
+\label{sec:case2-eigenvalue-bias}
 
-first paragraph: what are we comparing??
--reference eigenvalues from MC simulations
--reference MC simulation used to collapse MGXS
--multi-group MOC use MGXS to calculate an eigenvalue
--MG eigenvalue is compared to MC eigenvalue with Eqn.~\ref{eqn:delta-rho}
-
-second paragraph: presented tabulated results
--Tab.~\ref{tab:keff-reference} - reference eigenvalues from OpenMC
-  -difference between aniso and iso-in-lab: 65 pcm
--Tab.~\ref{tab:keff-bias-aniso} - OpenMC eigenvalues w/ MGXS generated from anisotropic OpenMC simulations
--Tab.~\ref{tab:keff-bias-iso-in-lab} - OpenMOC eigenvalues w/ MGXS generated from iso-in-lab OpenMC simulations
-
-third paragraph: analyze results
--bias grows more negative with more energy groups
-  -goes against intuition: eigenvalues should be more accurate w/ more groups
-  -with enough groups (e.g., ultra-fine), MG and MC eigenvalues should match exactly
-  -but with coarser group structures, the eigenvalues do not match
-    -even with ``perfect'' group condensation with the ``true'' flux
-
-\begin{equation}
-\label{eqn:delta-rho}
-\Delta\rho = \left(k_{eff}^{OpenMOC} - k_{eff}^{OpenMC}\right) \times 10^{5}
-\end{equation}
-
--data is for 2D fuel pin with MGXS tallied by FSR
+The OpenMC Monte Carlo code was used to tally MGXS in seventy energy groups and to compute a reference eigenvalue for the second test case benchmark. Reference eigenvalues are presented in~\autoref{tab:keff-reference} for simulations with ``normal'' anisotropic scattering, and for the case when OpenMC's ``iso-in-lab'' feature was employed. The two reference OpenMC simulations were also used to tally separate MGXS libraries to quantify the isotropic in lab scattering approximation used in OpenMOC and to isolate it from the flux separabilty approximation.
 
 \begin{table}[h!]
   \centering
@@ -46,14 +20,29 @@ third paragraph: analyze results
   {\bf Anisotropic} &
   {\bf Isotropic in Lab} \\
   \midrule
-  1.17486 $\pm$ 0.00001 & 1.17421 $\pm$ 0.00001 \\
+  1.17488 $\pm$ 0.00001 & 1.17422 $\pm$ 0.00001 \\
   \bottomrule
 \end{tabular}
 \end{table}
 
+The MGXS were employed by a series deterministic multi-group transport simulations to quantify the interaction between the energy and spatial approximations. The effects of energy discretization was analyzed by collapsing the 70-group MGXS library to coarser group structures used by the CASMO code. The MOC Flat Source Region (FSR) spatial discretization meshes were varied with constant-by material MGXS in each FSR to quantify the interaction between the energy and spatial approximations. In particular, 1, 4 or 16 radial rings were used to discretize both the fuel and moderator, while 8 azimuthal sectors were used to discretize the fuel, gap, clad and moderator. The MGXS were computed using tally meshes in OpenMC identical to the FSR meshes used by OpenMOC. All OpenMOC simulations used 128 azimuthal angles and 0.01 cm track spacing for the characteristic track laydown.
+
+%The results underline the complex interactions between discretizations in energy and space which are impacted by the loss of angular information due ot the flux separability approximation. 
+
+In the results that follow, the bias $\Delta\rho$ compares the eigenvalue $k_{eff}^{MOC}$ computed by OpenMOC to that of the reference eigenvalue $k_{eff}^{MC}$ computed by OpenMC in units of pcm:
+
+\begin{equation}
+\label{eqn:delta-rho}
+\Delta\rho = \left(k_{eff}^{MOC} - k_{eff}^{MC}\right) \times 10^{5}
+\end{equation}
+
+\noindent The eigenvalue bias for the ``normal'' anisotropic and ``iso-in-lab'' simulations are presented in~\autoref{tab:keff-bias-aniso} and~\autoref{tab:keff-bias-iso-in-lab}, respectively, for varying energy group structures and FSR spatial discretizations. The results illustrate a strong interaction between the energy and spatial meshes used to solve the multi-group transport equation.
+
+%In particular, the eigenvalue bias grows in magnitude with more energy groups and FSRs but is largely insensitive to the the elimination of the isotropic scattering approximation.
+
 \begin{table}[h!]
   \centering
-  \caption{The eigenvalue bias with transport-corrected MGXS.}
+  \caption{The eigenvalue bias with anisotropic scattering.}
   \label{tab:keff-bias-aniso} 
   \begin{tabular}{c S[table-format=6.1] S[table-format=6.1] S[table-format=6.1]}
   \toprule
@@ -62,17 +51,40 @@ third paragraph: analyze results
   \multicolumn{1}{c}{{\bf \# Groups}} &
   {\bf 1$\times$} & {\bf 4$\times$} & {\bf 16$\times$} \\
   \midrule
-1 & 53 & 75 & 72 \\
-2 & 37 & 1 & 4 \\
-4 & -58 & -92 & -109 \\
-8 & -74 & -145 & -170 \\
-16 & -67 & -154 & -183 \\
-25 & -124 & -221 & -245 \\
-40 & -130 & -238 & -265 \\
-70 & -131 & -281 & -274 \\
+1 & 67 & 63 & 92 \\
+2 & 22 & -56 & -51 \\
+4 & -58 & -128 & -135 \\
+8 & -75 & -182 & -197 \\
+16 & -73 & -190 & -207 \\
+25 & -128 & -246 & -268 \\
+40 & -131 & -261 & -288 \\
+70 & -132 & -267 & -297 \\
   \bottomrule
 \end{tabular}
 \end{table}
+
+%\begin{table}[h!]
+%  \centering
+%  \caption{The eigenvalue bias with transport-corrected MGXS.}
+%  \label{tab:keff-bias-aniso} 
+%  \begin{tabular}{c S[table-format=6.1] S[table-format=6.1] S[table-format=6.1]}
+%  \toprule
+%  & \multicolumn{3}{c}{{\bf FSR Discretization}} \\
+%  \midrule
+%  \multicolumn{1}{c}{{\bf \# Groups}} &
+%  {\bf 1$\times$} & {\bf 4$\times$} & {\bf 16$\times$} \\
+%  \midrule
+%1 & 53 & 75 & 72 \\
+%2 & 37 & 1 & 4 \\
+%4 & -58 & -92 & -109 \\
+%8 & -74 & -145 & -170 \\
+%16 & -67 & -154 & -183 \\
+%25 & -124 & -221 & -245 \\
+%40 & -130 & -238 & -265 \\
+%70 & -131 & -281 & -274 \\
+%  \bottomrule
+%\end{tabular}
+%\end{table}
 
 \begin{table}[h!]
   \centering
@@ -98,9 +110,16 @@ third paragraph: analyze results
 \end{table}
 
 
+In particular, the eigenvalue bias varies by up to 350 pcm between energy group structures and nearly 200 pcm between FSR discretizations. The use of isotropic in lab scattering in OpenMC reduces the magnitude of the bias by up to 100 pcm for seventy energy groups, indicating that the majority of the bias is unrelated to approximation error due to OpenMOC's isotropic in lab scattering kernel. Most importantly, the eigenvalue bias grows in magnitude and turns negative for increasingly fine energy group structures.
+
+These results go against the intuition that finer energy discretization will necessarily permit more accurate multi-group eigenvalue transport calculations. Rather, they illustrate that even when cross sections are collapsed using the ``true'' scalar flux from Monte Carlo, reaction rates are not necessarily preserved. As a result, a non-negligible eigenvalue bias emerges between continuous energy and multi-group transport calculations when increasingly fine energy group and spatial discretization meshes are used.
+
+%  -with enough groups (e.g., ultra-fine), MG and MC eigenvalues should match exactly
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Multi-Group Flux Bias}
-\label{sec:bias-flux}
+\subsection{Multi-Group Flux Bias}
+\label{sec:case2-flux-bias}
 
 first paragraph: present figures
 -Fig.~\ref{fig:rel-err-energy} compares MG and MC flux by energy group
