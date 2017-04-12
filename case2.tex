@@ -3,13 +3,13 @@
 \label{sec:test-case2}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-The second test case was designed to investigate the impact of the groupwise reaction rate errors in the context of an eigenvalue calculation for a PWR benchmark. The influence of the energy-integrated reaction rate errors on the global eigenvalue is evaluated in~\autoref{sec:case2-eigenvalue-bias}, while ~\autoref{sec:case2-flux-bias} quantifies the relationship between the bias and reaction rate errors in the energy groups with large resonant capture cross sections.
+The second test case was designed to investigate the impact of the groupwise reaction rate errors in the context of an eigenvalue calculation for a PWR benchmark. The influence of the energy-integrated reaction rate errors on the global eigenvalue is evaluated in~\autoref{sec:case2-eigenvalue-bias}, while~\autoref{sec:case2-flux-bias} quantifies the relationship between the bias and reaction rate errors in the energy groups with large resonant capture cross sections.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Eigenvalue Bias}
 \label{sec:case2-eigenvalue-bias}
 
-The OpenMC Monte Carlo code was used to tally MGXS in seventy energy groups and to compute a reference eigenvalue for the second test case benchmark. Reference eigenvalues are presented in~\autoref{tab:keff-reference} for simulations with ``normal'' anisotropic scattering, and for the case when OpenMC's ``iso-in-lab'' feature was employed. The two reference OpenMC simulations were also used to tally separate MGXS libraries to quantify the isotropic in lab scattering approximation used in OpenMOC and to isolate it from the flux separabilty approximation.
+The OpenMC Monte Carlo code was used to simultaneously tally MGXS in 70 energy groups and compute reference eigenvalues for the second benchmark. The eigenvalues are presented in~\autoref{tab:keff-reference} for simulations with anisotropic scattering, as well as the case when OpenMC's ``iso-in-lab'' feature was employed. The two reference OpenMC simulations were also used to tally separate MGXS libraries to quantify the isotropic in lab scattering approximation used in OpenMOC and to isolate it from the flux separabilty approximation.
 
 \begin{table}[h!]
   \centering
@@ -121,28 +121,20 @@ This analysis illustrates the counter-intuitive result that the bias between con
 \subsection{Multi-Group Flux Bias}
 \label{sec:case2-flux-bias}
 
-The analysis in~\autoref{sec:test-case1} demonstrated that the flux separability approximation leads to significant reaction rate errors in energy groups with large U-238 capture resonances. This section investigates how these errors in resonance groups led to the eigenvalue bias between continuous energy and multi-group transport calculations quantified in~\autoref{sec:case2-eigenvalue-bias}. The results presented in this section were produced for the second test case benchmark model with sixteen radial ring FSR discretization mesh in both the fuel and moderator. As in~\autoref{sec:case2-eigenvalue-bias}, the MGXS were tallied by OpenMC directly on the OpenMOC flat source region mesh. The results correspond to the case studies in~\autoref{tab:keff-bias-iso-in-lab} with isotropic in lab scattering.
+The analysis in~\autoref{sec:test-case1} demonstrated that the flux separability approximation leads to significant reaction rate errors in energy groups with large U-238 capture resonances for a simplified PWR fuel pin. This section investigates how such errors in resonance groups may produce the eigenvalue bias observed between continuous energy and multi-group transport calculations. The analysis in this section corresponds to OpenMOC simulations of the second test case benchmark model with a 16 radial ring FSR discretization mesh in both the fuel and moderator. As in~\autoref{sec:case2-eigenvalue-bias}, the MGXS were tallied by OpenMC directly on the OpenMOC flat source region mesh with isotropic in lab scattering.
 
-The 70-group OpenMOC flux was compared to the reference OpenMC flux, and the percent relative error is illustrated in~\autoref{fig:rel-err-energy}. The error is given for the FSRs nearest and furthest from the moderator, along with the average error across all FSRs in the fuel. The U-238 capture cross section is also given for comparison purposes. The figure reveals an error of up to 2.5\% in the innermost FSR in groups 24, 25 and 27. These energy groups contain the three largest U-238 capture resonances between 4 and 48.052 eV. In addition, the flux errors appear to compound upon each other as the energy decreases through the resonance region, and the magnitude of the capture resonances increase. The one notable exception to this is group 26 (4 -- 9.877 eV) which does not include a U-238 capture resonance.
+The 70-group OpenMOC flux was compared to the reference OpenMC flux, and the percent relative error is illustrated in~\autoref{fig:rel-err-energy}. The error is given for the FSRs nearest and furthest from the moderator, along with the average error across all FSRs in the fuel. The U-238 capture cross section is also shown for comparison purposes. The figure reveals an error of up to 2.5\% in the innermost FSR in groups 24, 25 and 27. These energy groups contain the three largest U-238 capture resonances between 4 and 48.052 eV. The flux errors increase as the energy decreases through the resonance region, and the magnitude of the capture resonances increase. The one notable exception to this is group 26 (4 -- 9.877 eV) which does not include a U-238 capture resonance.
 
 \begin{figure}[h!]
 \centering
 \includegraphics[width=\linewidth]{figures/rel-err-inner-outer}
-\caption{The energy-dependent relative error of the OpenMOC scalar flux with respect to the reference OpenMC flux for the innermost, outermost and all FSRs.}
+\caption{The energy-dependent percent relative error of the OpenMOC scalar flux with respect to the reference OpenMC flux for the innermost, outermost and all FSRs.}
 \label{fig:rel-err-energy}
 \end{figure}
 
 These observations stand in contrast to the flux errors in the outermost FSR for which no remarkable trend can be discerned. The average error across all FSRs is roughly $\nicefrac{2}{3}$ that of the innermost FSR and exhibits the same features in the resonance region. The positive error in the flux in groups with large capture resonances indicates that capture reaction rates are over-predicted in those groups by OpenMOC, contributing to the negative bias in the eigenvalue. Furthermore, these results indicate a strong relationship between the energy and spatial distribution of the flux errors.
 
-second paragraph: analyze figures
--the errors are largest for range A which most tightly encompasses a single resonance
--errors vary widely across fuel pin
--tie this into an argument of why this:
-  (1) causes an eigenvalue bias
-  (2) results from loss of angular information with scalar flux-weighted MGXS
--segue into next section on possible solutions
-
-The trends in~\autoref{fig:rel-err-energy} indicate a large difference in the error profile for those FSRs nearest and furthest from the moderator. In order to better understand the spatial variation of the flux error across the FSRs, the flux error was analyzed in the following three energy regimes:
+The trends in~\autoref{fig:rel-err-energy} indicate a large difference in the error profile for those FSRs nearest and furthest from the moderator. In order to better understand this spatial variation, the flux error was analyzed in the following three energy regimes:
 
 \begin{itemize}
   \item {\bf Range A} -- group 27 encompassing the U-238 capture resonance at 6.67 eV
@@ -150,22 +142,18 @@ The trends in~\autoref{fig:rel-err-energy} indicate a large difference in the er
   \item {\bf Range C} -- groups 1 -- 70 spanning the entire energy regime from 0 -- 20 MeV
 \end{itemize}
 
-\autoref{fig:rel-err-space} highlights the spatial dependence of the error across the fuel for each energy range. The Range A error monotonically decreases from a maximum of 2.5\% to a minimum of $\sim$-0.5\% in those FSRs furthest and nearest the moderator. Furthermore,  the trend accelerates in outermost 3 -- 4 FSRs, where the error drops by nearly half of its value at the center of the pin. The error profiles for energy Range B exhibits a similar decreasing trend from the center to the rim of the pin, but the error magnitude never exceeds 0.5\% in magnitude. Finally, the Range C errors do not exhibit a marked trend and are very nearly zero for all flat source regions.
+\autoref{fig:rel-err-space} highlights the spatial dependence of the error across the fuel for each energy range. The Range A error monotonically decreases from a maximum of 2.5\% to a minimum near zero in those FSRs furthest and nearest the moderator. Furthermore,  the trend accelerates in the outermost 3 -- 4 FSRs, where the error drops by nearly half of its value at the center of the pin. The error profiles for energy Range B exhibits a similar decreasing trend from the center to the rim of the pin, but the error magnitude never exceeds 0.5\% in magnitude. Finally, the Range C errors do not exhibit a marked trend and are very nearly zero for all flat source regions.
 
 %The systematic error trends in energy and space imply that the negative eigenvalue bias is driven by a poor prediction of the reaction rates in resonance groups, as investigated in the following section.
 
 \begin{figure}[h!]
 \centering
 \includegraphics[width=\linewidth]{figures/rel-err-fuel-fsrs}
-\caption{The spatially-varying relative error of the OpenMOC scalar flux with respect to the reference OpenMC flux in energy Ranges A, B, and C.}
+\caption{The spatially-varying percent relative error of the OpenMOC scalar flux with respect to the reference OpenMC flux in energy Ranges A, B, and C.}
 \label{fig:rel-err-space}
 \end{figure}
 
-\autoref{fig:u238-capture-space} illustrates the spatial dependence of the normalized U-238 capture reaction rates in Range A across the fuel FSRs. The ``rim effect'' of U-238 capture in the outermost ring nearest the moderator is illustrated by the capture rates which are are 5$\times$ greater in the outermost ring than in the innermost rings. The interior zones experience a highly self-shielded flux since neutrons at energies coinciding with the U-238 capture resonance at 6.67 eV are absorbed in the outermost ring before they can further penetrate the fuel. Although the Range A capture rates in the interior regions are relatively small, the largest errors appear in those zones as shown in Fig.~\ref{fig:rel-err-space}. 
-
-These results indicate that spatial self-shielding effects in resonance groups is not adequately captured by the MGXS and/or the multi-group tranport calculation. Although it is challenging to isolate the factors which convolve to bias the eigenvalue, the data presented here indicates that an over-prediction of U-238 capture in the resonance groups largely drives the error.
-
-%Taken together, the reaction rates and flux errors convolve to produce a non-negligible error in the volume-integrated U-238 capture rate across the fuel pin.
+Finally,~\autoref{fig:u238-capture-space} illustrates the spatial dependence of the normalized U-238 capture reaction rates in Range A across the fuel FSRs. The ``rim effect'' of U-238 capture in the outermost ring nearest the moderator is illustrated by the capture rates which are are 5$\times$ greater in the outermost ring than in the innermost rings. The interior zones experience a highly self-shielded flux since neutrons at energies coinciding with the U-238 capture resonance at 6.67 eV are absorbed in the outermost ring before they can further penetrate the fuel. Although the Range A capture rates in the interior regions are relatively small, the largest errors appear in those zones as shown in~\autoref{fig:rel-err-space}. 
 
 \begin{figure}[h!]
 \centering
@@ -173,3 +161,5 @@ These results indicate that spatial self-shielding effects in resonance groups i
 \caption{The normalized spatially-varying U-238 capture rates tallied by OpenMC in Range A.}
 \label{fig:u238-capture-space}
 \end{figure}
+
+These results indicate that spatial self-shielding effects in resonance groups is not adequately captured by the MGXS and/or the multi-group tranport calculation. Although it is challenging to isolate the factors which convolve to bias the eigenvalue, the data presented here demonstrates that an over-prediction of U-238 capture in the resonance groups due to the flux separability approximation is the most important factor.
