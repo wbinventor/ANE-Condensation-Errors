@@ -69,9 +69,17 @@
 
 \def\sectionautorefname{Sec.}
 \def\subsectionautorefname{Sec.}
+\def\subsubsectionautorefname{Sec.}
 \def\equationautorefname{Eq.}
 \def\figureautorefname{Fig.}
 \def\algorithmautorefname{Alg.}
+
+% Patch to make equation autoref counter work
+\makeatletter
+\patchcmd\eq@setnumber{\stepcounter}{\refstepcounter}{}{%
+  \errmessage{Patching \noexpand\eq@setnumber failed}%
+}
+\makeatother
 
 \hypersetup{colorlinks=true,
   pdftitle={An Analysis of Condensation Errors in Multi-Group Cross-Section Generation for Fine-Mesh Neutron Transport Calculations},
@@ -159,7 +167,7 @@ Multi-group cross-sections, energy condensation, spatial homogenization, superho
 \input{methodology}
 \input{case1}
 \input{case2}
-\input{sph}
+\input{solutions}
 \input{conclusions}
 \input{acknowledgements}
 
