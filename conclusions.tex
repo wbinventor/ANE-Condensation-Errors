@@ -5,12 +5,12 @@
 
 The flux separability approximation is commonly used to collapse cross sections in energy and space with the scalar rather than the angular flux. This paper investigated the impact of this approximation on fine-mesh deterministic multi-group transport methods for two PWR benchmarks. The first test case highlighted reaction rate errors of more than 1\% in energy groups with large U-238 capture resonances for a simple two-region PWR fuel pin with a slowing down source. The second test case quantified an eigenvalue bias of approximately 200 pcm between continuous energy Monte Carlo and deterministic transport methods due to an over-prediction of U-238 capture rates in resonance groups for a four-region PWR fuel pin. These two test cases illustrate the significant approximation error that results even when the ``true'' scalar flux, rather than the angular flux, is used to collapse cross sections.
 
-% that reaction rates are not necessarily preserved even when the ``true'' scalar flux spectrum is used to collapse cross sections.
-
 %-energy and spatial dependence of the bias:
 %  -the bias emerges / grows with more energy groups
 %  -reaction rate errors are concentrated in the interior of the fuel pin
 
 The use of angularly-dependent MGXS is the most direct and mathematically consistent approach to resolve this issue. This paper showed that this approach effectively eliminated the reaction rate errors for a two-region PWR fuel pin benchmark. However, angularly-dependent MGXS cannot be easily computed for arbitrary geometries using traditional MGXS generation methods, and are not supported by most standard transport codes. This paper also applied SuPerHomog\'{e}n\'{e}isation factors to preserve reaction rates between continouous energy MC and deterministic transport methods. Although SPH factors were shown to resolve the eigenvalue bias for a four-region fuel pin cell, this approach suffers from a number of shortcomings. In particular, the SPH scheme requires knowledge of the reference source distribution, is dependent on the spatial discretization mesh, and is indiscriminate between various sources of approximation error.
 
-{\color{red} Future work: jump conditions? coarse angularly-dependent MGXS? universal SPH factors?}
+It is the authors' view that issues related to the flux separability approximation will become increasingly important as coarse mesh diffusion-based methods are supplanted by fine-mesh transport methods for reactor analysis. Future research should develop methods to account for the angular dependence of the total MGXS. For example, it may be possible to develop a simple heuristic to approximate the large variation in MGXS for neutrons entering or leaving a fuel pin, without requiring complicated code revisions to support angularly-dependent MGXS. Alternatively, an equivalence scheme predicated on ``jump conditions'' might be used to preserve the net current across material interfaces, and thereby also preserve reaction rates. These concepts are currently being studied and will be reported on in subsequent publications.
+
+% Universal SPH factors?
