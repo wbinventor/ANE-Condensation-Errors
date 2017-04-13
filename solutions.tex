@@ -132,17 +132,14 @@ The SPH iteration algorithm described here is summarized in~\autoref{alg:sph}. A
 \subsubsection{Results}
 \label{subsubsec:sph-results}
 
-\begin{figure}[h!]
-\centering
-\includegraphics[width=\linewidth]{figures/rel-err-inner-outer-sph}
-\caption{The energy-dependent relative error of the OpenMOC scalar flux computed with SPH-corrected MGXS with respect to the reference OpenMC flux for the innermost, outermost and all FSRs.}
-\label{fig:rel-err-energy-sph}
-\end{figure}
+The first test case benchmark was modeled with SPH-corrected MGXS for the FSRs in the fuel and compared to the results presented in~\autoref{sec:test-case2}. The MGXS were computed using isotropic in lab scattering and a spatial tally mesh corresponding to an FSR mesh with 16 radial rings in both fuel and moderator. The OpenMOC fixed source and eigenvalue calculations were performed with 128 azimuthal angles and 0.01 cm track spacing. The OpenMOC fixed source calculations were converged to 10$^{-5}$ on the average FSR scalar flux.
+
+The eigenvalue bias $\Delta\rho$ between OpenMC and OpenMOC for SPH-corrected MGXS is presented in~\autoref{tab:keff-bias-sph}, which can be compared to the bias without SPH in~\autoref{tab:keff-bias-iso-in-lab}. The results illustrate a large reduction in the eigenvalue bias; in particular, the bias of -210 pcm was reduced to just -3 pcm for the finest energy and spatial discretization.
 
 \begin{table}[h!]
   \centering
   \caption{The eigenvalue bias with SPH-corrected MGXS.}
-  \label{table:keff-bias-sph} 
+  \label{tab:keff-bias-sph} 
   \begin{tabular}{c S[table-format=6.1] S[table-format=6.1] S[table-format=6.1]}
   \toprule
   & \multicolumn{3}{c}{{\bf FSR Discretization}} \\
@@ -161,3 +158,22 @@ The SPH iteration algorithm described here is summarized in~\autoref{alg:sph}. A
   \bottomrule
 \end{tabular}
 \end{table}
+
+Although these results illustrate much better agreement between OpenMC and OpenMOC, a non-negligible bias remains in most cases. It is postulated that the remaining bias may be due to the fact that the reaction rate balance enforced with SPH factors assumes that the eigenvalue calculation with a multi-group method will produce the same neutron source distribution as continous energy Monte Carlo. However, the eigenvalue source is not necessarily conserved since approximation errors from spatial and angular discretization will impact the multi-group method's solution.
+
+%In summary, the eigenvalues between continuous energy and multi-group transport calculations will identically match if the multi-group transport method computes the same eigenvalue source with SPH-corrected MGXS as that found by the continuous energy method.
+
+The error of OpenMOC's 70-group flux with respect to the reference OpenMC flux is displayed in~\autoref{fig:rel-err-energy-sph}. The errors are shown for the innermost and outermost FSRs in the fuel, along with the average error across all FSRs in the fuel. The flux error is greatly reduced with SPH-corrected MGXS, and is nearly flat in energy. The improvement in OpenMOC's flux -- especially in those energy groups with large U-238 capture resonances -- is responsible for the reduction in the eigenvalue bias with SPH-corrected MGXS presented in~\autoref{tab:keff-bias-sph}.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=\linewidth]{figures/rel-err-inner-outer-sph}
+\caption{The energy-dependent relative error of the OpenMOC scalar flux computed with SPH-corrected MGXS with respect to the reference OpenMC flux for the innermost, outermost and all FSRs.}
+\label{fig:rel-err-energy-sph}
+\end{figure}
+
+Although SPH factors can greatly improve the agreement between OpenMC and OpenMOC, the SPH approach suffers from a number of shortcomings. First, the SPH approach requires knowledge of the true eigenvalue source distribution. If a reference source must first be computed with a continuous energy method in order to compute SPH-corrected MGXS, then there is no reason to perform a subsequent multi-group calculation since the solution is already known from the reference calculation. Second, the SPH scheme is wholly dependent on the spatial discretization used by downstream deterministic multi-group methods. In particular, the reference source must be calculated from the reference continuous energy method in each of the spatial mesh cells used by the SPH iteration scheme. Lastly, the SPH scheme attempts to preserve reaction rates irregardless of the types of approximation errors which may lead to bias between continuous energy and multi-group transport codes. The SPH scheme simultaneously ``corrects'' the MGXS to account for errors deriving from the spatial, angular and energy discretization and the treatment of the scattering kernel, in addition to those errors resulting from the flux separability approximation.
+
+As a result of the shortcomings to the SPH approach, it is unclear whether the SPH factors may be broadly applied to correct for the flux separability approximation in MGXS generated from MC. Future work should investigate whether a universal set of SPH factors may be tabulated for known geometries (\textit{e.g.}, PWR fuel pins). For example, if the SPH factors in the resonance groups are relatively invariant to the fuel enrichment, moderator density, burnup  and neighboring pin types, then a single set of SPH factors may be computed for an infinite pin cell and applied to each fuel pin in heterogeneous PWR lattice and full-core calculations.
+
+%n particular, the SPH scheme requires knowledge of the reference source distribution, is dependent on the spatial discretization mesh, and is indiscriminate between various sources of approximation error.
