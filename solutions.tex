@@ -3,21 +3,29 @@
 \label{sec:solutions}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
--outline this section
+first paragraph: outline following sections
+-recall issues from before
+   -over-prediction of U-238 capture in resonance groups results in a non-negligible eigenvalue bias
+-~\autoref{subsec:angular-mgxs} intros fully angular-dependent MGXS in the context of the first test case
+-~\autoref{subsec:sph} intros SPH factors in the context of the second test case
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Angular-Dependent Total MGXS}
-\label{subsec:angle-dep-mgxs}
+\subsection{Angularly-Dependent Total MGXS}
+\label{subsec:angular-mgxs}
 
-{\color{red} content to come from Nate's thesis, chapter 9?}
+The flux separability approximation introduced in~\autoref{sec:flux-separability} led to the use of the scalar rather than the angular flux to condense the total cross section in energy. The mathematically proper treatment would instead use the angular flux to condense the total MGXS in angle, energy and space, resulting in angularly-dependent total MGXS. This section shows that using fully angularly-dependent data causes the bias in the group reaction rates to vanish for the first test case benchmark.
 
-The flux separability approximation introduced in~\autoref{sec:flux-separability} led to the use of the scalar rather than the angular flux to condense the total cross section in energy. The mathematically proper treatment would instead use the angular flux to condense the total MGXS in angle, energy and space, resulting in angular-dependent total MGXS. Flux separability is commonly used since conventional MGXS generation schemes are generally incapable of approximating the angular dependence of the flux in the arbitrary geometries and spatial discretizations modeled by multi-group transport codes. As a result, multi-group codes are unable to reproduce the correct angular dependence of the neutron flux with scalar flux-weighted MGXS. Furthermore, flux separability is an approximation which may lead to non-trivial errors in downstream multi-group calculations, such as the eigenvalue bias observed in~\autoref{sec:test-case2}.
+As was noted in~\autoref{sec:flux-separability}, the most important aspect of the physics to account for in an LWR fuel pin is whether neutrons are entering the region through the fuel pin or directly from the moderator (see~\autoref{fig:incoming-outgoing}). This self-shielding effect cannot be properly modeled by the simple application of angularly-dependent to a single region fuel pin. In this case, a cross section for a given angle would be applied to both neutrons entering the fuel pin from the moderator and to neutrons exiting the fuel pin on the opposite side. Thus, the fuel pin must also be spatially-discretized in order to resolve the error.
+
+The impact of angularly-dependent MGXS was investigated for first test case benchmark of a simple two-region pin cell. The reference solution was computed on an ultra-fine energy mesh and was used to collapse cross sections. Cross sections for the left hand side of the transport equation were collapsed separately for each angle, weighted by the angular flux for that angle. The geometry was discretized with eight equally-spaced azimuthal sectors. The fuel was split up into three rings of equal volume, while the moderator was subdivided into two equal width rings. {\color{red} How many ultra-fine energy groups? How many discrete angular bins? Include all information necessary to reproduce these results.}
+
+The reaction rate errors in resonance groups with angular flux-weighted MGXS are presented in~\autoref{tab:angular-mgxs-case1}. The results for scalar flux-weighted MGXS given in~\autoref{tab:case1-bias} are reproduced here for clarity. The most significant errors in energy groups 24, 25 and 27 are reduced by up to two orders of magnitude with angularly-dependent MGXS. These results demonstrate that the observed condensation errors can be removed by maintaining fine structure in both angle and space in the condensed cross sections.
 
 \begin{table}[h!]
   \centering
-  \caption{U-238 resonance range reaction rates for collapsed cross sections on simple pin-cell {(\color{red}Table 7.5 from Nate's thesis)}.}
-  \label{tab:case1-bias} 
+  \caption{U-238 resonance range reaction rate percent relative errors computed with scalar and angular flux-weighted MGXS for the first test case benchmark {(\color{red}Table 7.5 from Nate's thesis)}.}
+  \label{tab:angular-mgxs-case1}
   \begin{tabular}{c c c c c}
   \toprule
   & & \multicolumn{2}{c}{Error [\%]} \\
@@ -41,6 +49,9 @@ The flux separability approximation introduced in~\autoref{sec:flux-separability
 \end{tabular}
 \end{table}
 
+Although this demonstration fully diagnoses the observed errors, this does not suggest that the ultimate solution to condensation errors is to use such fine structure. This would come at a great computational expense, as the spatial discretization increases the cost of the transport solve, and the angularly-dependent cross sections dramatically increase the memory requirements. In addition, flux separability is commonly used since conventional MGXS generation schemes are generally incapable of approximating the angular dependence of the flux in the arbitrary geometries and spatial discretizations modeled by multi-group transport codes.
+
+%As a result, multi-group codes are unable to reproduce the correct angular dependence of the neutron flux with scalar flux-weighted MGXS. Furthermore, flux separability is an approximation which may lead to non-trivial errors in downstream multi-group calculations, such as the eigenvalue bias observed in~\autoref{sec:test-case2}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{SuPerHomog\'{e}n\'{e}isation Factors}
@@ -48,7 +59,7 @@ The flux separability approximation introduced in~\autoref{sec:flux-separability
 
 Hmm \cite{hebert2005ribon}, \cite{hebert1993consistent} \cite{hebert1997advances}
 
-Although angular-dependent total MGXS the most direct solution to eliminate the flux separability approximation, it is not a desirable approach for a number of reasons. Angular-dependent MGXS would significantly increase the memory footprint for MGXS libraries, and be complicated to accommodate in multi-group methods. SuPerHomog\'{e}n\'{e}isation (SPH) factors is presented in this section as an alternative method to reduce heterogeneous resonant reaction rate errors. SPH is a relatively simple-to-implement method, which was evaluated in OpenMOC as discussed in the following sections.
+Although angularly-dependent total MGXS the most direct solution to eliminate the flux separability approximation, it is not a desirable approach for a number of reasons. Angularly-dependent MGXS would significantly increase the memory footprint for MGXS libraries, and be complicated to accommodate in multi-group methods. SuPerHomog\'{e}n\'{e}isation (SPH) factors is presented in this section as an alternative method to reduce heterogeneous resonant reaction rate errors. SPH is a relatively simple-to-implement method, which was evaluated in OpenMOC as discussed in the following sections.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -112,12 +123,12 @@ The SPH iteration algorithm described here is summarized in~\autoref{alg:sph}. I
   \State Initialize MGXS from MC tallies
   \State Compute reference source from MC flux and MGXS
   \State Initialize SPH factors to unity
-  \While{SPH factor residuals are not converged}
+  \While{SPH factors are not converged}
     \State Update total MGXS with SPH factors
     \State Solve fixed source transport problem\footnotemark
     \State Compute new SPH factors
   \EndWhile
-  \State Compute final MGXS with SPH factors
+  \State Update all MGXS with SPH factors
 \end{algorithmic}
 \end{algorithm}
 
