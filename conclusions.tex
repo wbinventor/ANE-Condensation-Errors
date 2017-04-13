@@ -3,6 +3,29 @@
 \label{sec:conclusions}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
--angular Dependent Cross Section Implementations only true solution
-  -Direct Usage
-  -Legendre Expansion
+first paragraph: summary of problem
+-recall flux separability approx: use of scalar flux rather than angular flux to weight MGXS
+-recall first test case: two-region pin cell with slowing down source
+  -used ultra-fine deterministic transport reference solution to collapse MGXS
+  -reaction rate errors of over 1\% in groups with largest U-238 capture resonances
+-recall second test case: critical four-region PWR pin cell
+  -used continous energy MC as reference solution to collapse MGXS with scalar flux-weighted MGXS
+  -reaction rate errors led to an eigenvalue bias of approximately 200 pcm due to under-prediction of U-238 capture in resonance groups
+-energy and spatial dependence of the bias:
+  -the bias emerges / grows with more energy groups
+  -reaction rate errors are concentrated in the interior of the fuel pin
+
+second paragraph: solutions
+-fully angularly-dependent MGXS
+  -demonstrated that it resolves the errors for the two-region pin cell benchmark
+-SPH factors
+  -equivalence method between continuous energy MC and deterministic transport
+  -resolved reaction rate errors and eigenvalue bias for the four-region pin cell benchmark
+-angularly-dependent MGXS require memory and are not supported by today's transport codes
+-SPH factors suffer from shortcomings
+
+In particular, the SPH scheme requires knowledge of the reference source distribution, is dependent on the spatial discretization mesh, and is indiscriminate between various sources of approximation error.
+
+{\color{red} Future work: jump conditions? coarse angularly-dependent MGXS? universal SPH factors?}
+
+%Although it may be possible to universally apply pre-tabulated SPH factors to fixed geometric configurations, it will likely be necessary to develop alternative methods to account for the angular dependence of the total MGXS. For example, the angular dependence of the total MGXS may be adequately embedded into the scattering kernel using the Consistent-P approximation~\cite{bell1967transport}. Alternatively, a coarse set of angular-dependent MGXS may mitigate most of the bias observed between OpenMC and OpenMOC. For example, a simple approximation might model two different total MGXS for neutrons entering or leaving a fuel pin. Although a coarse angular scheme would not capture the high degree of angular variation illustrated in~\autoref{fig:batman-plots}, it might capture enough to adequately resolve the bias. One challenge to this approach would be to define a general way to accommodate different PWR discretizations within each fuel pin cell.
