@@ -3,10 +3,9 @@
 \label{sec:solutions}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-The preceding sections showed that the flux separability approximation leads to errors in reaction rate errors in energy groups with large U-238 capture resonances, which results in a non-negligible bias in the eigenvalue. This section reviews two approaches to counter the impact of the flux separability approximation. \autoref{subsec:angular-mgxs} investigates the use of angularly-dependent MGXS in the context of the first test case. \autoref{subsec:sph} introduces SuPerHomog\'{e}n\'{e}isation factors to systematically adjust the scalar flux-weighted MGXS to preserve reference reaction rates, in the context of the second test case.
+The preceding sections showed that the flux separability approximation leads to reaction rate errors in energy groups with large U-238 capture resonances, which results in a non-negligible bias in the eigenvalue. This section reviews two approaches to counter the impact of the flux separability approximation. \autoref{subsec:angular-mgxs} and \autoref{subsec:alternate-angle} investigate the use of angularly-dependent MGXS in the context of the first test case. \autoref{subsec:sph} introduces SuPerHomog\'{e}n\'{e}isation factors to systematically adjust the scalar flux-weighted MGXS to preserve reaction rates in the context of the second test case.
 
 %The preceding results demonstrated that using the ``true'' scalar flux spectrum from an ultra-fine deterministic or Monte Carlo simulation to perform energy condensation and spatial homogenization will not necessarily preserve group reaction rates.
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Angularly-Dependent Total MGXS}
@@ -14,16 +13,50 @@ The preceding sections showed that the flux separability approximation leads to 
 
 The flux separability approximation introduced in~\autoref{sec:flux-separability} led to the use of the scalar rather than the angular flux to condense the total cross section in energy. The mathematically proper treatment would instead use the angular flux to condense the total MGXS in angle, energy and space, resulting in angularly-dependent total MGXS. This section shows that using fully angularly-dependent data causes the bias in the group reaction rates to vanish for the first test case benchmark.
 
-As was noted in~\autoref{sec:flux-separability}, the most important aspect of the physics to account for in an LWR fuel pin is whether neutrons are entering the region through the fuel pin or directly from the moderator (see~\autoref{fig:incoming-outgoing}). This self-shielding effect cannot be properly modeled by the simple application of angularly-dependent to a single region fuel pin. In this case, a cross section for a given angle would be applied to both neutrons entering the fuel pin from the moderator and to neutrons exiting the fuel pin on the opposite side. Thus, the fuel pin must also be spatially-discretized in order to resolve the error.
+As was noted in~\autoref{sec:flux-separability}, the most important aspect of the physics to account for in an LWR fuel pin is whether neutrons are entering the region through the fuel pin or directly from the moderator (see~\autoref{fig:incoming-outgoing}). This self-shielding effect cannot be properly modeled by the simple application of angularly-dependent to a single region fuel pin. In this case, a cross section for a given angle would be applied to both neutrons entering the fuel pin from the moderator and to neutrons exiting the fuel pin on the opposite side. Thus, the fuel pin must also be spatially discretized in order to resolve the error.
 
-The impact of angularly-dependent MGXS was investigated for first test case benchmark of a simple two-region pin cell. The reference solution was computed on an ultra-fine energy mesh and was used to collapse cross sections. Cross sections for the left hand side of the transport equation were collapsed separately for each angle, weighted by the angular flux for that angle. The geometry was discretized with eight equally-spaced azimuthal sectors. The fuel was split up into three rings of equal volume, while the moderator was subdivided into two equal width rings. {\color{red} How many ultra-fine energy groups? How many discrete angular bins? Include all information necessary to reproduce these results.}
+The impact of angularly-dependent MGXS was investigated for first test case benchmark of a simple two-region pin cell. The reference solution was computed on an ultra-fine energy mesh and was used to collapse cross sections. Cross sections for the left hand side of the transport equation were collapsed separately for each angle, weighted by the angular flux for that angle. The geometry was discretized with equally-spaced azimuthal sectors, equal volume fuel rings, and equal width moderator rings.  A depiction of this discretization with six azimuthal sectors, three fuel rings and two moderator rings is shown in~\autoref{fig:pin-disc}.
 
-The reaction rate errors in resonance groups with angular flux-weighted MGXS are presented in~\autoref{tab:angular-mgxs-case1}. The results for scalar flux-weighted MGXS given in~\autoref{tab:case1-bias} are reproduced here for clarity. The most significant errors in energy groups 24, 25 and 27 are reduced by up to two orders of magnitude with angularly-dependent MGXS. These results demonstrate that the observed condensation errors can be removed by maintaining fine structure in both angle and space in the condensed cross sections.
+\begin{figure}
+\centering
+\caption{Depiction of pin discretization with 6 azimuthal sectors, 3 fuel rings, and 2 moderator rings.}
+\label{fig:pin-disc}
+\includegraphics[width=0.6\linewidth]{figures/pin-discrete}
+\end{figure}
+
+The reaction rate errors in resonance groups with angular flux-weighted MGXS are presented in~\autoref{tab:angular-mgxs-1} and \autoref{tab:angular-mgxs-2}.  The former does not discretize the pin, while the latter uses 5 fuel rings and 8 sectors.  In both cases, three moderator rings are used.  Regardless of pin discretization, weighting with the scalar flux leads to errors over 1\% for the groups containing the low-lying resonances of U-238.  With angular flux weighting, the error is reduced by about an order of magnitude when the pin is discretized; however, without pin discretization, the errors are not reduced.  To see the trend of pin discretization compared to error, see~\autoref{fig:angular-mgxs-error}.
 
 \begin{table}[h!]
   \centering
-  \caption{U-238 resonance range reaction rate percent relative errors computed with scalar and angular flux-weighted MGXS for the first test case benchmark {(\color{red}Table 7.5 from Nate's thesis)}.}
-  \label{tab:angular-mgxs-case1}
+  \caption{U-238 resonance range reaction rate percent relative errors computed with scalar and angular flux-weighted MGXS for the first test case benchmark without pin discretization. \red{Add data!}}
+  \label{tab:angular-mgxs-1}
+  \begin{tabular}{c c c c c}
+  \toprule
+  & & \multicolumn{2}{c}{\textbf{Error [\%]}} \\
+  \cline{3-4}
+  \textbf{Group} & \textbf{\boldmath$E_{max}$ [eV]} & \textbf{Scalar} & \textbf{Angular} \\
+  \midrule
+  15 & 9118.00 & 1.05E-01 & 1.83E-01 \\
+  16 & 5530.00 & 1.42E-01 & 2.28E-01 \\
+  17 & 3519.10 & 3.29E-01 & 4.85E-01 \\
+  18 & 2239.45 & 4.57E-01 & 6.42E-01 \\
+  19 & 1425.10 & 4.61E-01 & 6.34E-01 \\
+  20 & 906.899 & 2.94E-01 & 4.08E-01 \\
+  21 & 367.263 & 5.43E-01 & 7.12E-01 \\
+  22 & 148.729 & 5.98E-01 & 7.79E-01 \\
+  23 & 75.5014 & 4.87E-01 & 6.21E-01 \\
+  24 & 48.0520 & 9.64E-01 & 1.25E+00 \\
+  25 & 27.7000 & 9.84E-01 & 1.26E+00 \\
+  26 & 15.9680 & 1.19E-03 & 2.77E-03 \\
+  27 & 9.87700 & 1.04E+00 & 1.31E+00 \\
+  \bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[h!]
+  \centering
+  \caption{U-238 resonance range reaction rate percent relative errors computed with scalar and angular flux-weighted MGXS for the first test case benchmark with 5 fuel rings and 8 azimuthal sectors.}
+  \label{tab:angular-mgxs-2}
   \begin{tabular}{c c c c c}
   \toprule
   & & \multicolumn{2}{c}{\textbf{Error [\%]}} \\
@@ -47,16 +80,51 @@ The reaction rate errors in resonance groups with angular flux-weighted MGXS are
 \end{tabular}
 \end{table}
 
-Although this demonstration fully diagnoses the observed errors, this does not suggest that the ultimate solution to condensation errors is to use such fine structure. This would come at a great computational expense, as the spatial discretization increases the cost of the transport solve, and the angularly-dependent cross sections dramatically increase the memory requirements. In addition, flux separability is commonly used since conventional MGXS generation schemes are generally incapable of approximating the angular dependence of the flux in the arbitrary geometries and spatial discretizations modeled by multi-group transport codes.
+\begin{figure}
+\caption{Errors using angular flux weighted multi-group cross sections as a function of pin discretization.}
+\label{fig:angular-mgxs-error}
+\includegraphics[width=\linewidth]{figures/pin-disc-rel-err}
+\end{figure}
+
+This demonstration fully diagnoses the errors observed previously, but angular-dependent cross sections are not a realistic option for most applications.  As demonstrated here, a great number of spatial discretization is needed, which both increases the computational time of the transport solution and increases the memory footprint of the cross section data.  Also, angular-dependent cross sections themselves require a significant amount of additional memory to store, compared to scalar flux weighted cross sections.  Furthermore, the generation of angular-dependent cross sections requires knowledge of the angular flux at the fine-group or continuous-energy level, and this is not available in most workflows.  Thus, angular-dependent cross sections are likely not the ultimate solution to the problem highlighted in this paper.
 
 %As a result, multi-group codes are unable to reproduce the correct angular dependence of the neutron flux with scalar flux-weighted MGXS. Furthermore, flux separability is an approximation which may lead to non-trivial errors in downstream multi-group calculations, such as the eigenvalue bias observed in~\autoref{sec:test-case2}.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Alternate Approach to Angular-Dependent Cross Sections}
+\label{subsec:alternate-angle}
+
+Multi-group transport solvers currently available do not typically allow for the use of angular-dependent cross sections in the collision term of the left hand side of the transport equation.  However, one can move this dependence into the source terms on the right hand side.  By subtracting the collision term and adding a modified collision term to both sides of Eqn.~\ref{eqn:transport-eqn-mg}, an equivalent multi-group transport equation is
+%
+\begin{dmath}
+\mathbf{\Omega} \cdot \nabla \psi_{g}(\mathbf{r},\mathbf{\Omega}) + \hat{\Sigma}_{t,g}(\mathbf{r})\psi_{g}(\mathbf{r},\mathbf{\Omega}) = Q_{g}(\mathbf{r},\mathbf{\Omega}) + \left(\hat{\Sigma}_{t,g}(\mathbf{r})-\Sigma_{t,g}(\mathbf{r},\mathbf{\Omega})\right)\psi_{g}(\mathbf{r},\mathbf{\Omega}) \quad .
+\end{dmath}
+%
+The added source term can also be expressed in a truncated spherical harmonics expansion:
+%
+\begin{dmath}
+\mathbf{\Omega} \cdot \nabla \psi_{g}(\mathbf{r},\mathbf{\Omega}) + \hat{\Sigma}_{t,g}(\mathbf{r})\psi_{g}(\mathbf{r},\mathbf{\Omega}) = Q_{g}(\mathbf{r},\mathbf{\Omega}) + 
+\sum_{l=0}^L \sum_{m=-l}^{l} Y_l^m (\mathbf{\Omega})
+\left(\hat{\Sigma}_{t,g}(\mathbf{r})-\Sigma_{t,g,lm}(\mathbf{r})\right)\psi_{g,lm}(\mathbf{r}) .
+\end{dmath}
+%
+These forms of the transport equation can be solved by most multi-group transport solvers, provided that they allow an iterated angular-dependent or angular moment source.  In one dimension, when the spherical harmonic simplifies to a Legendre polynomial, the source term can be built into the Legendre-expanded scattering matrix, as shown in \citep{macfarlane2000njoy} \red{[and Bell-Glasstone]}. 
+
+In this formulation, the choice of $\hat{\Sigma}_{t, g}$ is arbitrary.  Its choice is often influenced by the transport approximation, where it is desired to preserve scattering moments higher than what are included in the scattering source \citep{bell1967transport}.  The simplest option is known as consistent-$P$,
+%
+\begin{dmath}
+\hat{\Sigma}_{t, g}(\mathbf{r}) = \Sigma_{t,g}(\mathbf{r}) \quad ,
+\end{dmath}
+%
+where $\Sigma_{t,g}$ is the isotropic component of the total cross section and is equivalent to the definition in Eqn.~\ref{eqn:sigt-mg-scalar}. 
+
+This approach has many of the same issues as using angular-dependent cross sections directly.  The data associated with a fully angular-dependent source is the same as with angular-dependent cross sections and is likely impractical for most applications.  Even the moments become cumbersome when more than a few spherical harmonics are included in the expansion.  Furthermore, the previous conclusion that spatial discretization is necessary to capture angular effects is not alleviated by moving the dependence to the right hand side.  The generation of the source terms also require knowledge of the detailed angular flux (or its moments) at the fine-group or continuous-energy level.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{SuPerHomog\'{e}n\'{e}isation Factors}
 \label{subsec:sph}
 
-Although angularly-dependent MGXS eliminate the flux separability approximation, they would significantly increase the memory footprint for MGXS libraries and be complicated to accommodate in multi-group transport codes. SuPerHomog\'{e}n\'{e}isation (SPH) factors is an alternative method to reduce heterogeneous resonant reaction rate errors. SPH factors were first proposed by~\cite{hebert1993consistent} to preserve reaction rates during energy condensation and spatial homogenization. SPH factors have traditionally been applied to spatially-homogenized few-group MGXS for coarse mesh diffusion applications. This section introduces SPH factors as an equivalence method between continuous energy Monte Carlo and deterministic multi-group transport methods for the second test case benchmark.
+SuPerHomog\'{e}n\'{e}isation (SPH) factors are an alternative method to reduce heterogeneous resonant reaction rate errors. SPH factors were first proposed by~\cite{hebert1993consistent} to preserve reaction rates during energy condensation and spatial homogenization. SPH factors have traditionally been applied to spatially-homogenized few-group MGXS for coarse mesh diffusion applications. This section introduces SPH factors as an equivalence method between continuous energy Monte Carlo and deterministic multi-group transport methods for the second test case benchmark.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{SPH Algorithm}
@@ -68,7 +136,7 @@ The SPH algorithm enforces reaction rate preservation between a reference fine-m
 
 \begin{dmath}
 \label{eqn:sph-transport-eqn}
-\mathbf{\Omega} \cdot \nabla \psi_{g}(\mathbf{r},\mathbf{\Omega}) + \mu_{k,g}\Sigma_{t,k,g}\psi_{g}(\mathbf{r},\mathbf{\Omega}) = Q_{k,g}(\mathbf{\Omega})
+\mathbf{\Omega} \cdot \nabla \psi_{g}(\mathbf{r},\mathbf{\Omega}) + \mu_{k,g}\Sigma_{t,k,g}\psi_{g}(\mathbf{r},\mathbf{\Omega}) = Q_{k,g}(\mathbf{\Omega}) \quad .
 \end{dmath}
 
 The SPH factors are applied to correct the total MGXS in each region and group. The fixed source $Q_{k,g}$ is computed from the reference fine-mesh solution. In this case, the fixed source is treated as the sum of scattering and fission production sources in each energy group and spatial zone. Given the fixed source and total MGXS from MC,~\autoref{eqn:sph-transport-eqn} may be solved using any multi-group transport method, such as MOC.
@@ -83,26 +151,26 @@ The SPH factors are applied to correct the total MGXS in each region and group. 
 %\end{dmath}
 
 An iterative algorithm is used to estimate SPH factors from a series of multi-group fixed source calculations. First, the estimates $\mu_{k,g}^{(n)}$ at iteration $n$ are introduced as a correction factor for the total cross section in~\autoref{eqn:sph-transport-eqn}:
-
+%
 \begin{dmath}
 \label{eqn:sph-transport-eqn-iterate}
-\mathbf{\Omega} \cdot \nabla \psi_{g}^{(n)}(\mathbf{r},\mathbf{\Omega}) + \mu_{k,g}^{(n-1)}\Sigma_{t,k,g}\psi_{g}^{(n)}(\mathbf{r},\mathbf{\Omega}) = Q_{k,g}(\mathbf{\Omega})
+\mathbf{\Omega} \cdot \nabla \psi_{g}^{(n)}(\mathbf{r},\mathbf{\Omega}) + \mu_{k,g}^{(n-1)}\Sigma_{t,k,g}\psi_{g}^{(n)}(\mathbf{r},\mathbf{\Omega}) = Q_{k,g}(\mathbf{\Omega}) \quad .
 \end{dmath}
-
-\noindent A multi-group transport code is used to solve~\autoref{eqn:sph-transport-eqn-iterate} with angular and volume integration to compute the scalar flux distribution. The SPH factors $\mu_{k,g}^{(n)}$ are found from the ratio of the reference Monte Carlo scalar flux $\phi_{k,g}^{MC}$ to the flux $\phi_{k,g}^{(n)}$ computed from the fixed source calculation at iteration $n$,
-
-\begin{equation}
+%
+A multi-group transport code is used to solve~\autoref{eqn:sph-transport-eqn-iterate} with angular and volume integration to compute the scalar flux distribution. The SPH factors $\mu_{k,g}^{(n)}$ are found from the ratio of the reference Monte Carlo scalar flux $\phi_{k,g}^{MC}$ to the flux $\phi_{k,g}^{(n)}$ computed from the fixed source calculation at iteration $n$,
+%
+\begin{dmath}
 \label{eqn:sph-update}
-\mu_{k,g}^{(n)} = \frac{\phi_{k,g}^{MC}}{\phi_{k,g}^{(n)}}
-\end{equation}
-
-\noindent where the factors are initialized to unity on the first iteration.
+\mu_{k,g}^{(n)} = \frac{\phi_{k,g}^{MC}}{\phi_{k,g}^{(n)}} \quad .
+\end{dmath}
+%
+where the factors are initialized to unity on the first iteration.
 
 The SPH factors are used to find a total MGXS which forces neutron balance in~\autoref{eqn:sph-transport-eqn-iterate}. The initial total MGXS $\Sigma_{t,k,g}^{(0)}$ is computed from the reference MC flux and total reaction rate tallies. The SPH factors are then used to obtain a corrected total MGXS $\Sigma_{t,k,g}^{(n)}$ on each iteration:
-
+%
 \begin{dmath}
 \label{eqn:sph-update-sigt}
-\Sigma_{t,k,g}^{(n)} = \mu_{k,g}^{(n-1)}\Sigma_{t,k,g}^{(0)}
+\Sigma_{t,k,g}^{(n)} = \mu_{k,g}^{(n-1)}\Sigma_{t,k,g}^{(0)} \quad .
 \end{dmath}
 
 The series of fixed source problems defined by~\autoref{eqn:sph-transport-eqn-iterate} are solved until the SPH factors converge. The scattering matrix and fission production cross section are used to compute the reference fixed source, but are not needed in the iterative scheme defined in Eqn.~\ref{eqn:sph-transport-eqn-iterate}. However, the converged SPH factors must be applied to the scattering matrix and fission production cross sections to produce a fully-corrected MGXS library for downstream eigenvalue calculations.
@@ -132,7 +200,7 @@ The SPH iteration algorithm described here is summarized in~\autoref{alg:sph}. A
 \subsubsection{Results}
 \label{subsubsec:sph-results}
 
-The first test case benchmark was modeled with SPH-corrected MGXS for the FSRs in the fuel and compared to the results presented in~\autoref{sec:test-case2}. The MGXS were computed using isotropic in lab scattering and a spatial tally mesh corresponding to an FSR mesh with 16 radial rings in both fuel and moderator. The OpenMOC fixed source and eigenvalue calculations were performed with 128 azimuthal angles and 0.01 cm track spacing. The OpenMOC fixed source calculations were converged to 10$^{-5}$ on the average FSR scalar flux.
+The second test case benchmark was modeled with SPH-corrected MGXS for the FSRs in the fuel and compared to the results presented in~\autoref{sec:test-case2}. The MGXS were computed using isotropic in lab scattering and a spatial tally mesh corresponding to an FSR mesh with 16 radial rings in both fuel and moderator. The OpenMOC fixed source and eigenvalue calculations were performed with 128 azimuthal angles and 0.01 cm track spacing. The OpenMOC fixed source calculations were converged to 10$^{-5}$ on the average FSR scalar flux.
 
 The eigenvalue bias $\Delta\rho$ between OpenMC and OpenMOC for SPH-corrected MGXS is presented in~\autoref{tab:keff-bias-sph}, which can be compared to the bias without SPH in~\autoref{tab:keff-bias-iso-in-lab}. The results illustrate a large reduction in the eigenvalue bias; in particular, the bias of -210 pcm was reduced to just -3 pcm for the finest energy and spatial discretization.
 

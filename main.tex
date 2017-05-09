@@ -66,28 +66,33 @@
 \makeatother
 
 \hypersetup{colorlinks=true,
-  pdftitle={An Analysis of Condensation Errors in Multi-Group Cross-Section Generation for Fine-Mesh Neutron Transport Calculations},
+  pdftitle={An Analysis of Condensation Errors in Multi-Group Cross Section Generation for Fine-Mesh Neutron Transport Calculations},
   pdfauthor={William Boyd, Nathan Gibson, Benoit Forget and Kord Smith.}}
+
+% Highlight in red for TBD work
+\newcommand{\red}[1]{{\color{red} #1}}
 
 \begin{document}
 
 \begin{frontmatter}
 
-\title{An Analysis of Condensation Errors in Multi-Group Cross-Section Generation for Fine-Mesh Neutron Transport Calculations}
+\title{An Analysis of Condensation Errors in Multi-Group Cross Section Generation for Fine-Mesh Neutron Transport Calculations}
 
-\author{William Boyd\corref{cor1}}
+\author[MIT]{William Boyd\corref{cor1}}
 \ead{wboyd@mit.edu}
 
-\author{Nathan Gibson\corref{}}
+\author[NNL]{Nathan Gibson\corref{}}
 \ead{nathan.gibson@unnpp.gov}
 
-\author{Benoit Forget\corref{}}
+\author[MIT]{Benoit Forget\corref{}}
 \ead{bforget@mit.edu}
 
-\author{Kord Smith\corref{}}
+\author[MIT]{Kord Smith\corref{}}
 \ead{kord@mit.edu}
 
-\address{Massachusetts Institute of Technology, Department of Nuclear Science and Engineering, 77 Massachusetts Avenue, Building 24, Cambridge, MA 02139, United States\vspace{-8ex}}
+\address[MIT]{Massachusetts Institute of Technology, Department of Nuclear Science and Engineering, 77 Massachusetts Avenue, Building 24, Cambridge, MA 02139, United States}
+
+\address[NNL]{Naval Nuclear Laboratory, PO Box 1072, Schenectady, NY 12301, United States}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -97,7 +102,7 @@
 \end{abstract}
 
 \begin{keyword}
-Multi-group cross-sections, energy condensation, spatial homogenization, superhomog\'{e}n\'{e}isation factors
+Multi-group cross sections, energy condensation, spatial homogenization, superhomog\'{e}n\'{e}isation factors
 \end{keyword}
 
 \end{frontmatter}
@@ -148,7 +153,7 @@ Multi-group cross-sections, energy condensation, spatial homogenization, superho
 
 \input{introduction}
 \input{separability}
-\input{methodology}
+% \input{methodology}
 \input{case1}
 \input{case2}
 \input{solutions}
